@@ -1,19 +1,13 @@
-<script>
+<script lang="ts">
 	let count = 0;
 	let clicked = false;
 	$: doubled = count * 2;
 
-	/**
-	 * @param {number} count
-	 */
-	function calculatePoints(count) {
+	function calculatePoints(count: number) {
 		let points = 2 * count;
 		let primes = [];
 
-		/**
-		 * @param {number} num
-		 */
-		function isPrime(num) {
+		function isPrime(num: number) {
 			for (let i = 2; i <= Math.sqrt(num); i++) {
 				if (num % i === 0) {
 					return false;

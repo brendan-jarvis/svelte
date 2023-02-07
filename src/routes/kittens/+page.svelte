@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Kittens from '../../components/kittens.svelte';
 	import Nav from '../../components/nav.svelte';
 

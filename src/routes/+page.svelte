@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Clicker from '../components/clicker.svelte';
 	import Nav from '../components/nav.svelte';
 

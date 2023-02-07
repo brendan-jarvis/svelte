@@ -1,12 +1,6 @@
-<script>
-	/**
-	 * @type {number}
-	 */
-	export let count = 5;
-	/**
-	 * @type string[]
-	 */
-	let kittenUrls = [];
+<script lang="ts">
+	export let count: number = 5;
+	let kittenUrls: string[] = [];
 
 	$: getKittenUrls();
 

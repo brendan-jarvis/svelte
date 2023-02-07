@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	async function getCat() {
 		const res = await fetch('https://api.thecatapi.com/v1/images/search');
 		const cat = await res.json();

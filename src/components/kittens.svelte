@@ -8,16 +8,21 @@
 	 */
 	let kittenUrls = [];
 
+	$: getKittenUrls();
+
 	function getKittenUrls() {
+		kittenUrls = [];
 		for (let i = 0; i < count; i++) {
 			kittenUrls.push(`http://placekitten.com/200/300?image=${i}`);
 		}
 	}
-
-	getKittenUrls();
 </script>
 
-<h2>Kittens!</h2>
+<label>
+	Want more than {count} kittens?
+	<input type="range" bind:value={count} on:change={getKittenUrls} min="5" max="20" />
+</label>
+
 <div class="kitten-grid">
 	{#each kittenUrls as url (url)}
 		<img class="kitten-image" src={url} alt="A cute kitten." />

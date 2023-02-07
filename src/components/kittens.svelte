@@ -2,7 +2,7 @@
 	/**
 	 * @type {number}
 	 */
-	export let count;
+	export let count = 5;
 	/**
 	 * @type string[]
 	 */

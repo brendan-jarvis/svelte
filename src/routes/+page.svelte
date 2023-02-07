@@ -3,15 +3,21 @@
 
 	const name = 'world';
 	const placekitten = { src: 'https://placekitten.com/500/500', alt: 'A cute kitten' };
+	const html = '<p>Some HTML. We can use this feature to expose our website to XSS attacks.</p>';
+	let count = 0;
 </script>
 
 <h1>Hello {name.toUpperCase()}!</h1>
 
-<p>This is some red text.</p>
+{@html html}
 
 <img src={placekitten.src} alt={placekitten.alt} />
 
 <Nested />
+
+<p>Here's some reactivity: {count}</p>
+
+<button on:click={() => (count += 1)}>Clicked {count} {count === 1 ? 'time' : 'times'}</button>
 
 <style>
 	img {

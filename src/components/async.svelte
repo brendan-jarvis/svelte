@@ -17,33 +17,39 @@
 	}
 </script>
 
-<button on:click={handleClick}>GET CAT</button>
-<br />
+<div class="container">
+	<button on:click={handleClick}>GET CAT</button>
 
-{#await promise}
-	<p>Waiting for cat...</p>
-{:then cat}
-	<img src={cat[0].url} alt="A random cat" />
-{:catch error}
-	<p style="color: red">{error.message}</p>
-{/await}
+	{#await promise}
+		<p>Waiting for cat...</p>
+	{:then cat}
+		<img src={cat[0].url} alt="A random cat" />
+	{:catch error}
+		<p style="color: red">{error.message}</p>
+	{/await}
+</div>
 
 <style>
 	img {
 		width: 100%;
-		height: 95vh;
+		height: 100%;
 		object-fit: cover;
+	}
+
+	.container {
+		display: flex;
+		height: 90vh;
+		align-items: center;
+		justify-content: center;
 	}
 
 	button {
 		position: absolute;
-		top: 5vh;
-		left: 50%;
 		padding: 10px 20px;
 		font-size: larger;
 		color: #fff;
 		background-color: #000;
-		border: none;
+		border: #fff 1px solid;
 		border-radius: 5px;
 		font-family: 'Roboto', sans-serif;
 	}

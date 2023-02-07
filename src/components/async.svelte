@@ -53,5 +53,12 @@
 		border-radius: 5px;
 		font-family: 'Roboto', sans-serif;
 		opacity: 0.7;
+		cursor: pointer;
+	}
+	button:hover {
+		opacity: 1;
+	}
+	button:focus {
+		outline: none;
 	}
 </style>

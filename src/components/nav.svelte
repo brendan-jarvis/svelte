@@ -1,7 +1,7 @@
 <nav>
 	<a href="/">Home</a>
 	<a href="/kittens">Kittens</a>
-	<a href="/get-cat">Get Cat</a>
+	<a href="/get-cat">Random Cat</a>
 </nav>
 
 <style>

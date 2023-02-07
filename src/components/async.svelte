@@ -52,5 +52,6 @@
 		border: #fff 1px solid;
 		border-radius: 5px;
 		font-family: 'Roboto', sans-serif;
+		opacity: 0.7;
 	}
 </style>

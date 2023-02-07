@@ -19,7 +19,7 @@
 
 <h2>Kittens!</h2>
 <div class="kitten-grid">
-	{#each kittenUrls as url}
+	{#each kittenUrls as url (url)}
 		<img class="kitten-image" src={url} alt="A cute kitten." />
 	{/each}
 </div>

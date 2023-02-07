@@ -1,5 +1,6 @@
 <script>
 	let count = 0;
+	let clicked = false;
 	$: doubled = count * 2;
 
 	/**
@@ -41,3 +42,9 @@
 <p>Points: {calculatePoints(count)}</p>
 
 <button on:click={() => (count += 1)}>Clicked {count} {count === 1 ? 'time' : 'times'}</button>
+{#if !clicked}
+	<button on:click={() => (clicked = true)}>Click me!</button>
+{/if}
+{#if clicked}
+	<button on:click={() => (clicked = false)}>Unclick me!</button>
+{/if}

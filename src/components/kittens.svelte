@@ -1,12 +1,15 @@
 <script>
-	let n = 10;
+	/**
+	 * @type {number}
+	 */
+	export let count;
 	/**
 	 * @type string[]
 	 */
 	let kittenUrls = [];
 
 	function getKittenUrls() {
-		for (let i = 0; i < n; i++) {
+		for (let i = 0; i < count; i++) {
 			kittenUrls.push(`http://placekitten.com/200/300?image=${i}`);
 		}
 	}

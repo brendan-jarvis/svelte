@@ -1,11 +1,13 @@
 <script>
 	import Clicker from '../components/clicker.svelte';
+	import Nav from '../components/nav.svelte';
 
-	let count = 0;
 	const name = 'world';
 	const placekitten = { src: 'https://placekitten.com/500/500', alt: 'A cute kitten' };
 	const html = '<p>Some HTML. We can use this feature to expose our website to XSS attacks.</p>';
 </script>
+
+<Nav />
 
 <h1>Hello {name.toUpperCase()}!</h1>
 

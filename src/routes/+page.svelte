@@ -1,8 +1,16 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-
 <script>
-	const name = 'brendan';
+	const name = 'world';
+  const placekitten = { src: 'https://placekitten.com/500/500', alt: 'A cute kitten' };
 </script>
 
+<style>
+	img {
+		border-radius: 50%;
+    border: 1px solid #0ff;
+    box-shadow: 0 0 5px #f0f
+	}
+</style>
+
 <h1>Hello {name.toUpperCase()}!</h1>
+
+<img src={placekitten.src} alt={placekitten.alt}>

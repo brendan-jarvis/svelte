@@ -1,6 +1,10 @@
 <script lang="ts">
+	import { env } from '$env/dynamic/public';
+
 	async function getCat() {
-		const res = await fetch('https://api.thecatapi.com/v1/images/search');
+		const res = await fetch(
+			`https://api.thecatapi.com/v1/images/search?api_key=${env.PUBLIC_CAT_API_KEY}}`
+		);
 		const cat = await res.json();
 
 		if (!res.ok) {

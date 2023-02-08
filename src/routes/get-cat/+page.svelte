@@ -37,30 +37,33 @@
 	img {
 		width: 100%;
 		height: 100%;
+		max-height: 60vh;
 		object-fit: cover;
 	}
 
 	.container {
 		display: flex;
-		height: 90vh;
+		flex-direction: column;
+		height: 100%;
 		align-items: center;
-		justify-content: center;
 	}
 
 	button {
-		position: absolute;
-		padding: 10px 20px;
+		padding: 10px;
+		text-transform: uppercase;
 		font-size: larger;
 		color: #fff;
 		background-color: #000;
 		border: #fff 1px solid;
 		border-radius: 5px;
+		margin-bottom: 1rem;
 		font-family: 'Roboto', sans-serif;
-		opacity: 0.7;
 		cursor: pointer;
 	}
 	button:hover {
-		opacity: 1;
+		background-color: #fff;
+		color: #000;
+		border: #000 1px solid;
 	}
 	button:focus {
 		outline: none;

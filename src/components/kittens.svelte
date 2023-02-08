@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	export let count: number = 5;
+	export let count: number = 3;
 	let kittenUrls: string[] = [];
 
 	$: getKittenUrls();
@@ -13,27 +13,42 @@
 	}
 </script>
 
-<label>
-	Want more than {count} kittens?
-	<input type="range" bind:value={count} on:change={getKittenUrls} min="5" max="20" />
-</label>
+<div class="control-panel">
+	<label>
+		{count} kittens:
+		<input type="range" bind:value={count} on:change={getKittenUrls} min="5" max="21" />
+	</label>
+</div>
 
 <div class="kitten-grid">
 	{#each kittenUrls as url (url)}
-		<img
-			class="kitten-image"
-			src={url}
-			alt="A cute kitten."
-			transition:fly={{ y: 200, duration: 2000 }}
-		/>
+		<img class="kitten-image" src={url} alt="A cute kitten." transition:fly={{ y: 200 }} />
 	{/each}
 </div>
 
 <style>
+	.control-panel {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	label {
+		display: flex;
+		align-items: center;
+		font-size: larger;
+		margin-right: 0.5em;
+	}
+
+	input[type='range'] {
+		width: 20em;
+	}
+
 	.kitten-grid {
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		grid-gap: 10px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.5rem;
 	}
 
 	.kitten-image {

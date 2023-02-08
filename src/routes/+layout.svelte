@@ -21,7 +21,7 @@
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
-		gap: 5vw;
+		gap: 1rem;
 	}
 
 	.center {

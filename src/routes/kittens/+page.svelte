@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Kittens from '../../components/kittens.svelte';
 
-	let count = 5;
+	let count = 3;
 </script>
 
 <svelte:head>

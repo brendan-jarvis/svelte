@@ -6,6 +6,11 @@
 	const html = '<p>Some HTML. We can use this feature to expose our website to XSS attacks.</p>';
 </script>
 
+<svelte:head>
+	<title>Svelte by Brendan Jarvis</title>
+	<meta name="description" content="A website built using Svelte by Brendan Jarvis" />
+</svelte:head>
+
 <h1>Hello {name.toUpperCase()}!</h1>
 
 <label for="name">Change name: </label>

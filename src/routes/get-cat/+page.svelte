@@ -33,6 +33,11 @@
 	{/await}
 </div>
 
+<svelte:head>
+	<title>Random Cat - Svelte by Brendan Jarvis</title>
+	<meta name="description" content="A website built using Svelte by Brendan Jarvis" />
+</svelte:head>
+
 <style>
 	img {
 		width: 100%;

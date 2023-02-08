@@ -4,6 +4,11 @@
 	let count = 5;
 </script>
 
+<svelte:head>
+	<title>Kittens - Svelte by Brendan Jarvis</title>
+	<meta name="description" content="A website built using Svelte by Brendan Jarvis" />
+</svelte:head>
+
 <h2>Kittens!</h2>
 
 <Kittens {count} />

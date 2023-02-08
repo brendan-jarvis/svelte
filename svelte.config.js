@@ -1,8 +1,6 @@
 import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
-import { BYPASS_TOKEN } from '$env/static/private';
-
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
@@ -25,7 +23,7 @@ const config = {
 		// with a __prerender_bypass=<token> cookie.
 		//
 		// Making a `GET` or `HEAD` request with `x-prerender-revalidate: <token>` will force the asset to be re-validated.
-		bypassToken: BYPASS_TOKEN,
+		// bypassToken: BYPASS_TOKEN,
 
 		// List of query string parameter names that will be cached independently.
 		// If an empty array, query values are not considered for caching.

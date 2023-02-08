@@ -25,3 +25,5 @@
 		color: #0ff;
 	}
 </style>
+
+<slot></slot>

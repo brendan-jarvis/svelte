@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
 	export let count: number = 5;
 	let kittenUrls: string[] = [];
 
@@ -19,7 +20,12 @@
 
 <div class="kitten-grid">
 	{#each kittenUrls as url (url)}
-		<img class="kitten-image" src={url} alt="A cute kitten." />
+		<img
+			class="kitten-image"
+			src={url}
+			alt="A cute kitten."
+			transition:fly={{ y: 200, duration: 2000 }}
+		/>
 	{/each}
 </div>
 

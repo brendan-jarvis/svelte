@@ -1,6 +1,7 @@
 import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+import { json } from '@sveltejs/kit';
 
 export const GET = (async () => {
 	const response = await fetch(
@@ -12,5 +13,5 @@ export const GET = (async () => {
 		throw error(500, 'Unable to fetch cat');
 	}
 
-	return new Response(cat[0], { status: 200 });
+	return json(cat[0]);
 }) satisfies RequestHandler;

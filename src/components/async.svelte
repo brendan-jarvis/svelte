@@ -1,23 +1,24 @@
 <script lang="ts">
 	import { env } from '$env/dynamic/public';
+  import type { PageLoad } from './$types';
+  
+  export const load = (async () => {
+    const res = await fetch(`https://api.thecatapi.com/v1/images/search?api_key=${env.PUBLIC_CAT_API_KEY}}`);
+    const cat = await res.json();
 
-	async function getCat() {
-		const res = await fetch(
-			`https://api.thecatapi.com/v1/images/search?api_key=${env.PUBLIC_CAT_API_KEY}}`
-		);
-		const cat = await res.json();
-
-		if (!res.ok) {
+    if (!res.ok) {
 			throw new Error('Something went wrong');
 		}
+ 
+    return cat;
+  }) satisfies PageLoad;
 
-		return cat;
-	}
-
-	let promise = getCat();
+	// let promise = getCat();
+  let promise = load();
 
 	function handleClick() {
-		promise = getCat();
+		// promise = getCat();
+		promise = load();
 	}
 </script>
 

@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { env } from '$env/dynamic/public';
 
 	async function getCat() {
 		const res = await fetch(
-			`https://api.thecatapi.com/v1/images/search?api_key=${env.PUBLIC_CAT_API_KEY}}`
+			'/api/random-cat'
 		);
-		const cat = await res.json();
+  
 
 		if (!res.ok) {
 			throw new Error('Something went wrong');
 		}
 
-		return cat;
+    console.log(res)
+		return cat
 	}
 
 	let promise = getCat();
@@ -27,7 +27,7 @@
 	{#await promise}
 		<p>Waiting for cat...</p>
 	{:then cat}
-		<img src={cat[0].url} alt="A random cat" />
+		<img src={cat} alt="A random cat" />
 	{:catch error}
 		<p style="color: red">{error.message}</p>
 	{/await}

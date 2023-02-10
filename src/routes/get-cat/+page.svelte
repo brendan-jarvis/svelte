@@ -1,36 +1,14 @@
 <script lang="ts">
-	import type { PageLoad } from './$types';
+	export let data;
+	const { cat } = data;
 
-	export const load = (async () => {
-		const res = await fetch(`https://api.thecatapi.com/v1/images/search`);
-		const cat = await res.json();
-
-		if (!res.ok) {
-			throw new Error('Something went wrong');
-		}
-
-		return cat;
-	}) satisfies PageLoad;
-
-	// let promise = getCat();
-	let promise = load();
-
-	function handleClick() {
-		// promise = getCat();
-		promise = load();
-	}
+	async function handleClick() {}
 </script>
 
 <div class="container">
-	<button on:click={handleClick}>GET CAT</button>
+	<!-- <button on:click={handleClick}>GET CAT</button> -->
 
-	{#await promise}
-		<p>Waiting for cat...</p>
-	{:then cat}
-		<img src={cat[0].url} alt="A random cat" />
-	{:catch error}
-		<p style="color: red">{error.message}</p>
-	{/await}
+	<img src={cat[0].url} alt="A random cat" />
 </div>
 
 <svelte:head>

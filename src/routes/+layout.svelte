@@ -58,7 +58,7 @@
 		font-size: smaller;
 		text-align: center;
 		padding: 3rem 0;
-		color: var(--frost-3);
+		color: var(--frost-1);
 		margin-top: auto;
 		font-family: 'Roboto Mono', monospace;
 	}

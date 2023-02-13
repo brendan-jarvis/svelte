@@ -11,16 +11,18 @@
 	<meta name="description" content="A website built using Svelte by Brendan Jarvis" />
 </svelte:head>
 
-<h1>Hello {name.toUpperCase()}!</h1>
+<div class="content">
+	<h1>Hello {name.toUpperCase()}!</h1>
 
-<label for="name">Change name: </label>
-<input type="text" bind:value={name} />
+	<label for="name">Change name: </label>
+	<input type="text" bind:value={name} />
 
-{@html html}
+	{@html html}
 
-<img src={placekitten.src} alt={placekitten.alt} />
+	<img src={placekitten.src} alt={placekitten.alt} />
 
-<Clicker />
+	<Clicker />
+</div>
 
 <style>
 	:global(:root) {
@@ -46,13 +48,22 @@
 	}
 
 	:global(body) {
-		background-color: var(--polar-night-1);
+		background-image: linear-gradient(to right, var(--polar-night-4) 0%, var(--polar-night-1) 100%);
 		color: var(--snow-storm-1);
 		font-family: 'Roboto', sans-serif;
 	}
 
-	:global(color) {
+	:global(.content) {
+		background-color: var(--polar-night-1);
+		color: var(--snow-storm-3);
+		padding: 1rem 2rem 1rem;
+		border-radius: 5px;
+		box-shadow: 0 0 5px var(--polar-night-1);
+	}
+
+	:global(.content h1) {
 		color: var(--snow-storm-1);
+		text-decoration: solid underline var(--frost-2);
 	}
 
 	:global(button) {

@@ -32,7 +32,6 @@
 	nav,
 	footer {
 		text-transform: uppercase;
-		letter-spacing: 0.1px;
 	}
 
 	nav {
@@ -41,25 +40,26 @@
 		align-items: center;
 		height: 60px;
 		background-color: #333;
-		color: white;
+		color: var(--snow-storm-1);
 		padding: 0 20px;
 	}
 
 	nav a {
-		color: white;
+		color: var(--snow-storm-1);
+		font-weight: bold;
 		text-decoration: none;
-		margin-right: 20px;
 	}
 
 	nav a:hover {
-		color: #0ff;
+		color: var(--frost-2);
 	}
 
 	footer {
-		font-size: 0.7rem;
+		font-size: smaller;
 		text-align: center;
 		padding: 3rem 0;
-		color: #777;
+		color: var(--frost-3);
 		margin-top: auto;
+		font-family: 'Roboto Mono', monospace;
 	}
 </style>

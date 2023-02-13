@@ -18,5 +18,6 @@
 		text-align: center;
 		margin: 0;
 		padding: 1rem 0;
+		color: var(--frost-1);
 	}
 </style>

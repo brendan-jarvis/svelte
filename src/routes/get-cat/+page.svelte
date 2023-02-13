@@ -30,25 +30,4 @@
 		height: 100%;
 		align-items: center;
 	}
-
-	button {
-		padding: 10px;
-		text-transform: uppercase;
-		font-size: larger;
-		color: #fff;
-		background-color: #000;
-		border: #fff 1px solid;
-		border-radius: 5px;
-		margin-bottom: 1rem;
-		font-family: 'Roboto', sans-serif;
-		cursor: pointer;
-	}
-	button:hover {
-		background-color: #fff;
-		color: #000;
-		border: #000 1px solid;
-	}
-	button:focus {
-		outline: none;
-	}
 </style>

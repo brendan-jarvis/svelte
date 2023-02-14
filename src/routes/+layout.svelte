@@ -6,11 +6,9 @@
 	</nav>
 
 	<main class="center">
-		<div class="content">
-			<slot />
-		</div>
-		<footer class="center">Made by Brendan Jarvis while learning Svelte in 2023</footer>
+		<slot />
 	</main>
+	<footer>Made by Brendan Jarvis while learning Svelte in 2023</footer>
 </div>
 
 <style>
@@ -44,53 +42,48 @@
 		);
 		color: var(--snow-storm-1);
 		font-family: 'Roboto', sans-serif;
-		margin: 0; /* Reset margins */
+		margin: 0 auto; /* Reset margins */
 	}
 
 	:global(html) {
 		overflow-y: scroll;
 	}
 
-	:global(.content) {
+	main {
 		background-color: var(--polar-night-1);
 		padding: 0.5rem 0.5rem 0.5rem;
 		border-radius: 5px;
-		max-width: 93%;
+		max-width: 90%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	#page {
 		display: flex;
 		flex-direction: column;
-		min-height: 100vh;
+		align-items: center;
 		gap: 1rem;
 	}
 
-	.center {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		max-width: 100%;
-		margin: 0 auto;
-	}
-
 	/* Colored heading tags */
-	:global(main h1) {
+	:global(h1) {
 		color: var(--aurora-1);
 	}
 
-	:global(main h2) {
+	:global(h2) {
 		color: var(--aurora-2);
 	}
 
-	:global(main h3) {
+	:global(h3) {
 		color: var(--aurora-3);
 	}
 
-	:global(main h4) {
+	:global(h4) {
 		color: var(--aurora-4);
 	}
 
-	:global(main h5, h6) {
+	:global(h5, h6) {
 		color: var(--aurora-5);
 	}
 
@@ -203,6 +196,7 @@
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
+		width: 100%;
 		height: 60px;
 		background-color: var(--polar-night-1);
 		color: var(--snow-storm-1);
@@ -221,9 +215,10 @@
 
 	footer {
 		font-size: smaller;
+		text-align: center;
 		padding: 3rem 0;
 		color: var(--frost-1);
-		margin-top: auto;
+		margin: 0 1rem 1rem;
 		font-family: 'Roboto Mono', monospace;
 	}
 </style>

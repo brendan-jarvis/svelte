@@ -9,9 +9,8 @@
 		<div class="content">
 			<slot />
 		</div>
+		<footer class="center">Made by Brendan Jarvis while learning Svelte in 2023</footer>
 	</main>
-
-	<footer class="center">Made by Brendan Jarvis while learning Svelte in 2023</footer>
 </div>
 
 <style>
@@ -50,8 +49,9 @@
 
 	:global(.content) {
 		background-color: var(--polar-night-1);
-		padding: 1rem 2rem 1rem;
+		padding: 0.5rem 0.5rem 0.5rem;
 		border-radius: 5px;
+		max-width: 93%;
 	}
 
 	#page {
@@ -62,8 +62,11 @@
 	}
 
 	.center {
-		padding-left: max(1rem, calc(50vw - 350px));
-		padding-right: max(1rem, calc(50vw - 350px));
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		max-width: 100%;
+		margin: 0 auto;
 	}
 
 	/* Colored heading tags */
@@ -126,10 +129,9 @@
 
 	/* Image styling */
 	:global(img) {
-		border-radius: 50%;
-		border: 1px solid var(--frost-4);
-		box-shadow: 0 0 5px var(--polar-night-1);
 		max-width: 100%;
+		display: block;
+		margin: 0 auto;
 	}
 
 	/* Link styling */
@@ -165,7 +167,6 @@
 
 	footer {
 		font-size: smaller;
-		text-align: center;
 		padding: 3rem 0;
 		color: var(--frost-1);
 		margin-top: auto;

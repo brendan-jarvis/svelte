@@ -183,6 +183,16 @@
 		color: var(--frost-4);
 	}
 
+	/* List styling */
+	:global(ul) {
+		list-style: square;
+		padding: 0 0 0 2rem;
+	}
+
+	:global(ol) {
+		padding: 0 0 0 2rem;
+	}
+
 	/* Navigation styling */
 	nav,
 	footer {

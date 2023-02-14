@@ -41,6 +41,20 @@
 <p>Doubled: {doubled}.</p>
 <p>Points: {calculatePoints(count)}</p>
 
+<p>Ordered List:</p>
+<ol>
+	{#each [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] as number}
+		<li>{number}</li>
+	{/each}
+</ol>
+
+<p>Unordered List:</p>
+<ul>
+	{#each [1, 2, 3, 4, 5] as number}
+		<li>{number}</li>
+	{/each}
+</ul>
+
 <button on:click={() => (count += 1)}>Clicked {count} {count === 1 ? 'time' : 'times'}</button>
 {#if !clicked}
 	<button on:click={() => (clicked = true)}>Click me!</button>

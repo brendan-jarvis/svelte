@@ -61,8 +61,23 @@
 	}
 
 	:global(.content h1) {
-		color: var(--snow-storm-1);
-		text-decoration: solid underline var(--frost-2);
+		color: var(--aurora-1);
+	}
+
+	:global(.content h2) {
+		color: var(--aurora-2);
+	}
+
+	:global(.content h3) {
+		color: var(--aurora-3);
+	}
+
+	:global(.content h4) {
+		color: var(--aurora-4);
+	}
+
+	:global(.content h5, h6) {
+		color: var(--aurora-5);
 	}
 
 	:global(input) {

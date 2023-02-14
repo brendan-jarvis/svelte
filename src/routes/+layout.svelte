@@ -39,7 +39,7 @@
 		justify-content: space-between;
 		align-items: center;
 		height: 60px;
-		background-color: #333;
+		background-color: var(--polar-night-1);
 		color: var(--snow-storm-1);
 		padding: 0 20px;
 	}

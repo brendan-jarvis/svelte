@@ -36,7 +36,7 @@
 
 	nav {
 		display: flex;
-		justify-content: space-between;
+		justify-content: space-around;
 		align-items: center;
 		height: 60px;
 		background-color: var(--polar-night-1);
@@ -45,13 +45,13 @@
 	}
 
 	nav a {
-		color: var(--snow-storm-1);
+		color: var(--snow-storm-3);
 		font-weight: bold;
 		text-decoration: none;
 	}
 
 	nav a:hover {
-		color: var(--frost-2);
+		color: var(--frost-4);
 	}
 
 	footer {

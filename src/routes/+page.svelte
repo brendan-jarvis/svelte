@@ -66,6 +66,19 @@
 		text-decoration: solid underline var(--frost-2);
 	}
 
+	:global(input) {
+		border: 1px solid var(--frost-4);
+		border-radius: 5px;
+		padding: 10px;
+		font-size: 1.2rem;
+		font-family: 'Roboto', sans-serif;
+	}
+
+	:global(input:focus) {
+		outline: var(--frost-2) 1px solid;
+		border: 1px solid var(--frost-2);
+	}
+
 	:global(button) {
 		background-color: var(--frost-1);
 		text-transform: uppercase;

@@ -37,7 +37,11 @@
 	}
 
 	:global(body) {
-		background-image: linear-gradient(to right, var(--polar-night-4) 0%, var(--polar-night-1) 100%);
+		background-image: linear-gradient(
+			to bottom,
+			var(--polar-night-4) 0%,
+			var(--polar-night-1) 100%
+		);
 		color: var(--snow-storm-1);
 		font-family: 'Roboto', sans-serif;
 		margin: 0; /* Reset margins */

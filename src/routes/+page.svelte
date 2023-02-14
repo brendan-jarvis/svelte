@@ -56,7 +56,7 @@
 
 	:global(.content) {
 		background-color: var(--polar-night-1);
-		color: var(--snow-storm-3);
+		color: var(--snow-storm-1);
 		padding: 1rem 2rem 1rem;
 		border-radius: 5px;
 	}

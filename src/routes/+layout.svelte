@@ -5,7 +5,7 @@
 		<a href="/get-cat">Random Cat</a>
 	</nav>
 
-	<main class="center">
+	<main>
 		<slot />
 	</main>
 	<footer>Made by Brendan Jarvis while learning Svelte in 2023</footer>
@@ -43,10 +43,6 @@
 		color: var(--snow-storm-1);
 		font-family: 'Roboto', sans-serif;
 		margin: 0 auto; /* Reset margins */
-	}
-
-	:global(html) {
-		overflow-y: scroll;
 	}
 
 	main {
@@ -159,8 +155,7 @@
 	/* Image styling */
 	:global(img) {
 		max-width: 100%;
-		display: block;
-		margin: 0 auto;
+		height: auto;
 	}
 
 	/* Link styling */

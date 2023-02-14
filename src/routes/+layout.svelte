@@ -156,6 +156,13 @@
 		background-color: var(--polar-night-3);
 	}
 
+	:global(button:focus) {
+		background-color: var(--polar-night-4);
+		background-color: var(--polar-night-3);
+		border: var(--frost-2) 1px solid;
+		outline: none;
+	}
+
 	/* Image styling */
 	:global(img) {
 		max-width: 100%;

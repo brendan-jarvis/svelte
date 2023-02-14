@@ -34,6 +34,10 @@
 
 <h2>Clicker</h2>
 <p>Here's some reactivity.</p>
+<p>
+	Here's a link to an external website:
+	<a href="https://svelte.dev" target="_blank" rel="noreferrer">Svelte</a>
+</p>
 <p>Doubled: {doubled}.</p>
 <p>Points: {calculatePoints(count)}</p>
 

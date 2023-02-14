@@ -175,6 +175,14 @@
 		color: var(--frost-2);
 	}
 
+	:global(a:visited) {
+		color: var(--frost-3);
+	}
+
+	:global(a:hover) {
+		color: var(--frost-4);
+	}
+
 	/* Navigation styling */
 	nav,
 	footer {

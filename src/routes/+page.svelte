@@ -56,7 +56,6 @@
 
 	:global(.content) {
 		background-color: var(--polar-night-1);
-		color: var(--snow-storm-1);
 		padding: 1rem 2rem 1rem;
 		border-radius: 5px;
 	}
@@ -80,25 +79,25 @@
 	}
 
 	:global(button) {
-		background-color: var(--frost-1);
 		text-transform: uppercase;
-		color: var(--polar-night-1);
-		border: var(--polar-night-1) 1px solid;
+		background-color: var(--polar-night-4);
+		color: var(--snow-storm-1);
+		border: var(--frost-4) 1px solid;
 		border-radius: 5px;
-		padding: 10px;
+		padding: 0.5rem;
 		font-size: 1.2rem;
 		font-family: 'Roboto', sans-serif;
 		cursor: pointer;
 	}
 
 	:global(button:hover) {
-		background-color: var(--polar-night-1);
-		color: var(--frost-1);
-		border: var(--frost-3) 1px solid;
+		color: var(--snow-storm-1);
+		background-color: var(--polar-night-2);
+		border: var(--frost-2) 1px solid;
 	}
 
-	:global(button:focus) {
-		outline: none;
+	:global(button:active) {
+		background-color: var(--polar-night-3);
 	}
 
 	img {

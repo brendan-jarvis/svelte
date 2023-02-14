@@ -94,6 +94,31 @@
 		color: var(--aurora-5);
 	}
 
+	/* Alerts */
+	:global(.error) {
+		background-color: var(--aurora-1);
+		color: var(--polar-night-1);
+		padding: 0.5rem;
+	}
+
+	:global(.warning) {
+		background-color: var(--aurora-2);
+		color: var(--polar-night-1);
+		padding: 0.5rem;
+	}
+
+	:global(.info) {
+		background-color: var(--frost-3);
+		color: var(--polar-night-1);
+		padding: 0.5rem;
+	}
+
+	:global(.success) {
+		background-color: var(--aurora-4);
+		color: var(--polar-night-1);
+		padding: 0.5rem;
+	}
+
 	/* Input styling */
 	:global(input) {
 		border: 1px solid var(--frost-4);

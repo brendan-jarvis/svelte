@@ -1,0 +1,201 @@
+:root {
+  --polar-night-1: #2e3440;
+  --polar-night-2: #3b4252;
+  --polar-night-3: #434c5e;
+  --polar-night-4: #4c566a;
+
+  --snow-storm-1: #d8dee9;
+  --snow-storm-2: #e5e9f0;
+  --snow-storm-3: #eceff4;
+
+  --frost-1: #8fbcbb;
+  --frost-2: #88c0d0;
+  --frost-3: #81a1c1;
+  --frost-4: #5e81ac;
+
+  --aurora-1: #bf616a;
+  --aurora-2: #d08770;
+  --aurora-3: #ebcb8b;
+  --aurora-4: #a3be8c;
+  --aurora-5: #b48ead;
+}
+
+body {
+  background-image: linear-gradient(
+    to bottom,
+    var(--polar-night-4) 0%,
+    var(--polar-night-1) 100%
+  );
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--snow-storm-1);
+  font-family: 'Roboto', sans-serif;
+  margin: 0 auto; /* Reset margins */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main {
+  background-color: var(--polar-night-1);
+  padding: 1rem 1rem 1rem;
+  border-radius: 5px;
+  width: 90vw;
+  
+}
+
+/* Colored heading tags */
+h1 {
+  color: var(--aurora-1);
+}
+
+h2 {
+  color: var(--aurora-2);
+}
+
+h3 {
+  color: var(--aurora-3);
+}
+
+h4 {
+  color: var(--aurora-4);
+}
+
+h5, h6 {
+  color: var(--aurora-5);
+}
+
+/* Alerts */
+.error {
+  background-color: var(--aurora-1);
+  color: var(--polar-night-1);
+  padding: 0.5rem;
+}
+
+.warning {
+  background-color: var(--aurora-2);
+  color: var(--polar-night-1);
+  padding: 0.5rem;
+}
+
+.info {
+  background-color: var(--frost-3);
+  color: var(--polar-night-1);
+  padding: 0.5rem;
+}
+
+.success {
+  background-color: var(--aurora-4);
+  color: var(--polar-night-1);
+  padding: 0.5rem;
+}
+
+/* Input styling */
+input {
+  border: 1px solid var(--frost-4);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+input:focus {
+  outline: var(--frost-2) 1px solid;
+  border: 1px solid var(--frost-2);
+}
+
+/* Button styling */
+button {
+  text-transform: uppercase;
+  background-color: var(--polar-night-4);
+  color: var(--snow-storm-1);
+  border: var(--frost-4) 1px solid;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+}
+
+button:hover {
+  color: var(--snow-storm-1);
+  background-color: var(--polar-night-2);
+  border: var(--frost-2) 1px solid;
+}
+
+button:active {
+  background-color: var(--polar-night-3);
+}
+
+button:focus {
+  background-color: var(--polar-night-4);
+  background-color: var(--polar-night-3);
+  border: var(--frost-2) 1px solid;
+  outline: none;
+}
+
+/* Image styling */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Link styling */
+a {
+  color: var(--frost-2);
+}
+
+a:visited {
+  color: var(--frost-3);
+}
+
+a:hover {
+  color: var(--frost-4);
+}
+
+/* List styling */
+ul {
+  list-style: square;
+  padding: 0 0 0 2rem;
+}
+
+ol {
+  padding: 0 0 0 2rem;
+}
+
+/* Navigation styling */
+nav,
+footer {
+  text-transform: uppercase;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  background-color: var(--polar-night-1);
+  color: var(--snow-storm-1);
+  padding: 0 20px;
+}
+
+nav a {
+  color: var(--snow-storm-3);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: var(--frost-4);
+}
+
+footer {
+  font-size: smaller;
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--frost-1);
+  margin: 0 1rem 1rem;
+  font-family: 'Roboto Mono', monospace;
+}

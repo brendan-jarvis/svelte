@@ -1,7 +1,15 @@
+<script>
+	let routes = [
+		{ href: '/', text: 'Home' },
+		{ href: '/kittens', text: 'Kittens' },
+		{ href: '/get-cat', text: 'Random Cat' }
+	];
+</script>
+
 <nav>
-	<a href="/">Home</a>
-	<a href="/kittens">Kittens</a>
-	<a href="/get-cat">Random Cat</a>
+	{#each routes as route}
+		<a href={route.href}>{route.text}</a>
+	{/each}
 </nav>
 
 <main>

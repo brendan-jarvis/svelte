@@ -6,6 +6,7 @@
 
 <div class="container">
 	<h1>Hackernews</h1>
+	<h2>Top Stories</h2>
 	<ul>
 		{#each topStories as story}
 			<li>

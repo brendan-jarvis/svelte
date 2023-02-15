@@ -19,7 +19,7 @@
 					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
 						>{story.descendants} comments</a
 					>
-					• {new Date(story.time).toLocaleDateString('en-NZ', {
+					• {new Date(story.time * 1000).toLocaleDateString('en-NZ', {
 						year: 'numeric',
 						month: 'long',
 						day: 'numeric'

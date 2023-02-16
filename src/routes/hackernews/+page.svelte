@@ -3,36 +3,62 @@
 
 	export let data: PageData;
 
-	const { topStories, bestStories, newStories } = data;
+	let { topStories, bestStories, newStories } = data;
+	let sort: string;
 
-	const changeSort = (e, stories) => {
-		let sortedStories;
+	const pointsSort = () => {
+		topStories = topStories.slice().sort((a, b) => b.score - a.score);
+		bestStories = bestStories.slice().sort((a, b) => b.score - a.score);
+		newStories = newStories.slice().sort((a, b) => b.score - a.score);
 
-		if (e.target.value === 'points') {
-			sortedStories = stories.slice().sort((a, b) => b.score - a.score);
-		} else if (e.target.value === 'comments') {
-			sortedStories = stories.slice().sort((a, b) => b.descendants - a.descendants);
-		} else if (e.target.value === 'date') {
-			sortedStories = stories.slice().sort((a, b) => b.time - a.time);
-		}
-
-		if (sortedStories) {
-			stories.splice(0, stories.length, ...sortedStories);
-		}
+		sort = 'points';
 	};
+
+	const commentsSort = () => {
+		topStories = topStories.slice().sort((a, b) => b.descendants - a.descendants);
+		bestStories = bestStories.slice().sort((a, b) => b.descendants - a.descendants);
+		newStories = newStories.slice().sort((a, b) => b.descendants - a.descendants);
+
+		sort = 'comments';
+	};
+
+	const dateSort = () => {
+		if (sort === 'date') {
+			topStories = topStories.slice().sort((a, b) => a.time - b.time);
+			bestStories = bestStories.slice().sort((a, b) => a.time - b.time);
+			newStories = newStories.slice().sort((a, b) => a.time - b.time);
+			sort = 'date-reverse';
+			return;
+		}
+
+		topStories = topStories.slice().sort((a, b) => b.time - a.time);
+		bestStories = bestStories.slice().sort((a, b) => b.time - a.time);
+		newStories = newStories.slice().sort((a, b) => b.time - a.time);
+
+		sort = 'date';
+	};
+
+	$: topStories = topStories;
+	$: bestStories = bestStories;
+	$: newStories = newStories;
 </script>
 
 <h1>Hackernews</h1>
+<label
+	>Sort by:
+	<button value="points" on:click={pointsSort}
+		>Points{#if sort === 'points'}↓{/if}{#if sort === 'points-reverse'}↑{/if}</button
+	>
+	<button value="comments" on:click={commentsSort}
+		>Comments{#if sort === 'comments'}↓{/if}{#if sort === 'comments-reverse'}↑{/if}</button
+	>
+	<button value="date" on:click={dateSort}
+		>Date posted{#if sort === 'date'}↓{/if}{#if sort === 'date-reverse'}↑{/if}</button
+	>
+</label>
 <div class="container">
 	<div class="posts">
 		<h2>Top Stories</h2>
-		<label
-			>Sort by
-			<button value="points" on:click={(e) => changeSort(e, topStories)}>Points</button>
-			<button value="comments" on:click={(e) => changeSort(e, topStories)}>Comments</button>
-			<button value="date" on:click={(e) => changeSort(e, topStories)}>Date posted</button>
-		</label>
-
 		{#each topStories as story (story)}
 			<div class="post">
 				<div class="post-header">
@@ -56,12 +82,6 @@
 	</div>
 	<div class="posts">
 		<h2>Best Posts</h2>
-		<label
-			>Sort by
-			<button value="points" on:click={(e) => changeSort(e, topStories)}>Points</button>
-			<button value="comments" on:click={(e) => changeSort(e, topStories)}>Comments</button>
-			<button value="date" on:click={(e) => changeSort(e, topStories)}>Date posted</button></label
-		>
 		{#each bestStories as story (story)}
 			<div class="post">
 				<div class="post-header">
@@ -85,12 +105,6 @@
 	</div>
 	<div class="posts">
 		<h2>New Posts</h2>
-		<label
-			>Sort by
-			<button value="points" on:click={(e) => changeSort(e, topStories)}>Points</button>
-			<button value="comments" on:click={(e) => changeSort(e, topStories)}>Comments</button>
-			<button value="date" on:click={(e) => changeSort(e, topStories)}>Date posted</button></label
-		>
 		{#each newStories as story (story)}
 			<div class="post">
 				<div class="post-header">

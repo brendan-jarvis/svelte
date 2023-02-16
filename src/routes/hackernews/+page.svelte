@@ -6,6 +6,15 @@
 	let { topStories, bestStories, newStories } = data;
 	let sort: string;
 
+	const dateToString = (date: number) => {
+		const d = new Date(date * 1000);
+		return d.toLocaleDateString('en-NZ', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
+		});
+	};
+
 	const pointsSort = () => {
 		if (sort === 'points') {
 			topStories = topStories.reverse();
@@ -87,11 +96,7 @@
 					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
 						>{story.descendants || '0'} comments</a
 					>
-					• {new Date(story.time * 1000).toLocaleDateString('en-NZ', {
-						year: 'numeric',
-						month: 'long',
-						day: 'numeric'
-					})}
+					• {dateToString(story.time)}
 				</div>
 			</div>
 		{/each}
@@ -110,11 +115,7 @@
 					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
 						>{story.descendants || '0'} comments</a
 					>
-					• {new Date(story.time * 1000).toLocaleDateString('en-NZ', {
-						year: 'numeric',
-						month: 'long',
-						day: 'numeric'
-					})}
+					• {dateToString(story.time)}
 				</div>
 			</div>
 		{/each}
@@ -133,11 +134,7 @@
 					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
 						>{story.descendants || '0'} comments</a
 					>
-					• {new Date(story.time * 1000).toLocaleDateString('en-NZ', {
-						year: 'numeric',
-						month: 'long',
-						day: 'numeric'
-					})}
+					• {dateToString(story.time)}
 				</div>
 			</div>
 		{/each}

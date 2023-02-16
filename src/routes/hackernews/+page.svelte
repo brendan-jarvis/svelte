@@ -7,6 +7,14 @@
 	let sort: string;
 
 	const pointsSort = () => {
+		if (sort === 'points') {
+			topStories = topStories.reverse();
+			bestStories = bestStories.reverse();
+			newStories = newStories.reverse();
+			sort = 'points-reverse';
+			return;
+		}
+
 		topStories = topStories.slice().sort((a, b) => b.score - a.score);
 		bestStories = bestStories.slice().sort((a, b) => b.score - a.score);
 		newStories = newStories.slice().sort((a, b) => b.score - a.score);
@@ -15,6 +23,14 @@
 	};
 
 	const commentsSort = () => {
+		if (sort === 'comments') {
+			topStories = topStories.reverse();
+			bestStories = bestStories.reverse();
+			newStories = newStories.reverse();
+			sort = 'comments-reverse';
+			return;
+		}
+
 		topStories = topStories.slice().sort((a, b) => b.descendants - a.descendants);
 		bestStories = bestStories.slice().sort((a, b) => b.descendants - a.descendants);
 		newStories = newStories.slice().sort((a, b) => b.descendants - a.descendants);
@@ -24,9 +40,9 @@
 
 	const dateSort = () => {
 		if (sort === 'date') {
-			topStories = topStories.slice().sort((a, b) => a.time - b.time);
-			bestStories = bestStories.slice().sort((a, b) => a.time - b.time);
-			newStories = newStories.slice().sort((a, b) => a.time - b.time);
+			topStories = topStories.reverse();
+			bestStories = bestStories.reverse();
+			newStories = newStories.reverse();
 			sort = 'date-reverse';
 			return;
 		}
@@ -47,13 +63,13 @@
 <label
 	>Sort by:
 	<button value="points" on:click={pointsSort}
-		>Points{#if sort === 'points'}↓{/if}{#if sort === 'points-reverse'}↑{/if}</button
+		>Points{#if sort === 'points'}▼{/if}{#if sort === 'points-reverse'}▲{/if}</button
 	>
 	<button value="comments" on:click={commentsSort}
-		>Comments{#if sort === 'comments'}↓{/if}{#if sort === 'comments-reverse'}↑{/if}</button
+		>Comments{#if sort === 'comments'}▼{/if}{#if sort === 'comments-reverse'}▲{/if}</button
 	>
 	<button value="date" on:click={dateSort}
-		>Date posted{#if sort === 'date'}↓{/if}{#if sort === 'date-reverse'}↑{/if}</button
+		>Date posted{#if sort === 'date'}▼{/if}{#if sort === 'date-reverse'}▲{/if}</button
 	>
 </label>
 <div class="container">

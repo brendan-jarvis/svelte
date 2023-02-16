@@ -4,8 +4,6 @@
 	export let data: PageData;
 
 	const { topStories, bestStories, newStories } = data;
-
-	console.log(newStories);
 </script>
 
 <h1>Hackernews</h1>
@@ -36,6 +34,29 @@
 	<div class="posts">
 		<h2>Best Posts</h2>
 		{#each bestStories as story}
+			<div class="post">
+				<div class="post-header">
+					<a href={story.url} class="post-title">{story.title}</a>
+					<span class={`story-type ${story.type}`}>{story.type}</span>
+				</div>
+				<div class="post-info">
+					<a href={`https://news.ycombinator.com/user?id=${story.by}`}> by {story.by}</a> • {story.score}
+					points •
+					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
+						>{story.descendants} comments</a
+					>
+					• {new Date(story.time * 1000).toLocaleDateString('en-NZ', {
+						year: 'numeric',
+						month: 'long',
+						day: 'numeric'
+					})}
+				</div>
+			</div>
+		{/each}
+	</div>
+	<div class="posts">
+		<h2>New Posts</h2>
+		{#each newStories as story}
 			<div class="post">
 				<div class="post-header">
 					<a href={story.url} class="post-title">{story.title}</a>

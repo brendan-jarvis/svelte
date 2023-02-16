@@ -6,13 +6,34 @@
 	let { topStories, bestStories, newStories } = data;
 	let sort: string;
 
-	const dateToString = (date: number) => {
-		const d = new Date(date * 1000);
-		return d.toLocaleDateString('en-NZ', {
+	const formatDate = (timestamp: number): string => {
+		const date = new Date(timestamp * 1000);
+		const now = new Date();
+		const diff = (now.getTime() - date.getTime()) / 1000; // time difference in seconds
+		const options: Intl.DateTimeFormatOptions = {
 			year: 'numeric',
 			month: 'long',
 			day: 'numeric'
-		});
+		};
+
+		if (diff < 3600) {
+			// less than 60 minutes ago
+			const minutes = Math.floor(diff / 60);
+			if (minutes === 1) {
+				return `${minutes} minute ago`;
+			}
+			return `${minutes} minutes ago`;
+		} else if (diff < 86400) {
+			// less than 24 hours ago
+			const hours = Math.floor(diff / 3600);
+			if (hours === 1) {
+				return `${hours} hour ago`;
+			}
+			return `${hours} hours ago`;
+		} else {
+			// more than 24 hours ago
+			return date.toLocaleDateString('en-NZ', options);
+		}
 	};
 
 	const pointsSort = () => {
@@ -96,7 +117,7 @@
 					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
 						>{story.descendants || '0'} comments</a
 					>
-					• {dateToString(story.time)}
+					• {formatDate(story.time)}
 				</div>
 			</div>
 		{/each}
@@ -115,7 +136,7 @@
 					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
 						>{story.descendants || '0'} comments</a
 					>
-					• {dateToString(story.time)}
+					• {formatDate(story.time)}
 				</div>
 			</div>
 		{/each}
@@ -134,7 +155,7 @@
 					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
 						>{story.descendants || '0'} comments</a
 					>
-					• {dateToString(story.time)}
+					• {formatDate(story.time)}
 				</div>
 			</div>
 		{/each}

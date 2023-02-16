@@ -4,12 +4,28 @@
 	export let data: PageData;
 
 	const { topStories, bestStories, newStories } = data;
+
+	const changeSort = (e, stories) => {
+		console.log('change sort', e.target.value, stories);
+    if(e.target.value === 'points') {
+      stories = stories.sort((a, b) => b.score - a.score);
+    } else if(e.target.value === 'comments') {
+      stories = stories.sort((a, b) => b.descendants - a.descendants);
+    } else if(e.target.value === 'date') {
+      stories = stories.sort((a, b) => b.time - a.time);
+    }
+	};
 </script>
 
 <h1>Hackernews</h1>
 <div class="container">
 	<div class="posts">
 		<h2>Top Stories</h2>
+		<label>Sort by</label>
+		<button value="points" on:click={(e) => changeSort(e, topStories)}>Points</button>
+		<button value="comments" on:click={(e) => changeSort(e, topStories)}>Comments</button>
+		<button value="date" on:click={(e) => changeSort(e, topStories)}>Date posted</button>
+
 		{#each topStories as story}
 			<div class="post">
 				<div class="post-header">
@@ -33,6 +49,10 @@
 	</div>
 	<div class="posts">
 		<h2>Best Posts</h2>
+    <label>Sort by</label>
+		<button value="points" on:click={(e) => changeSort(e, topStories)}>Points</button>
+		<button value="comments" on:click={(e) => changeSort(e, topStories)}>Comments</button>
+		<button value="date" on:click={(e) => changeSort(e, topStories)}>Date posted</button>
 		{#each bestStories as story}
 			<div class="post">
 				<div class="post-header">
@@ -56,6 +76,10 @@
 	</div>
 	<div class="posts">
 		<h2>New Posts</h2>
+    <label>Sort by</label>
+		<button value="points" on:click={(e) => changeSort(e, topStories)}>Points</button>
+		<button value="comments" on:click={(e) => changeSort(e, topStories)}>Comments</button>
+		<button value="date" on:click={(e) => changeSort(e, topStories)}>Date posted</button>
 		{#each newStories as story}
 			<div class="post">
 				<div class="post-header">

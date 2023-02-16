@@ -6,11 +6,13 @@ export const load = (async ({ fetch }) => {
 		const res = await fetch(`https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`);
 		const topStories = await res.json();
 
+		const topFiftyStories = topStories.slice(0, 50);
+
 		if (!res.ok) {
 			throw error(res.status, 'Something went wrong fetching top stories from Hacker News');
 		}
 
-		const storyDataPromises = topStories.map(async (story: string) => {
+		const storyDataPromises = topFiftyStories.map(async (story: string) => {
 			const storyRes = await fetch(`https://hacker-news.firebaseio.com/v0/item/${story}.json`);
 			if (!storyRes.ok) {
 				throw error(storyRes.status, 'Something went wrong fetching a story from Hacker News');
@@ -44,8 +46,30 @@ export const load = (async ({ fetch }) => {
 		return storyData;
 	};
 
+	const fetchNewPosts = async () => {
+		const res = await fetch(`https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty`);
+		const newStories = await res.json();
+
+		if (!res.ok) {
+			throw error(res.status, 'Something went wrong fetching new stories from Hacker News');
+		}
+
+		const storyDataPromises = newStories.map(async (story: string) => {
+			const storyRes = await fetch(`https://hacker-news.firebaseio.com/v0/item/${story}.json`);
+			if (!storyRes.ok) {
+				throw error(storyRes.status, 'Something went wrong fetching a story from Hacker News');
+			}
+			return storyRes.json();
+		});
+
+		const storyData = await Promise.all(storyDataPromises);
+
+		return storyData;
+	};
+
 	return {
 		topStories: fetchTopPosts(),
-		bestStories: fetchBestPosts()
+		bestStories: fetchBestPosts(),
+		newStories: fetchNewPosts()
 	};
 }) satisfies PageLoad;

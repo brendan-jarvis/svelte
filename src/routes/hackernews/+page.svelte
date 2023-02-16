@@ -3,7 +3,9 @@
 
 	export let data: PageData;
 
-	const { topStories, bestStories } = data;
+	const { topStories, bestStories, newStories } = data;
+
+	console.log(newStories);
 </script>
 
 <h1>Hackernews</h1>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Clicker from '../components/clicker.svelte';
+	import Clicker from '../lib/components/clicker.svelte';
 
 	let name = 'world';
 	const placekitten = { src: 'https://placekitten.com/500/500', alt: 'A cute kitten' };

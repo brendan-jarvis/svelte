@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Kittens from '../../components/kittens.svelte';
+	import Kittens from '../../lib/components/kittens.svelte';
 
 	let count = 3;
 </script>

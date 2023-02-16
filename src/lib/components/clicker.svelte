@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { typewriter } from '../../lib/utils';
+	import { typewriter } from '../utils';
 
 	let count = 0;
 	let clicked = false;

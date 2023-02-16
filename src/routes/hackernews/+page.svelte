@@ -20,7 +20,7 @@
 					<a href={`https://news.ycombinator.com/user?id=${story.by}`}> by {story.by}</a> • {story.score}
 					points •
 					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
-						>{story.descendants} comments</a
+						>{story.descendants || '0'} comments</a
 					>
 					• {new Date(story.time * 1000).toLocaleDateString('en-NZ', {
 						year: 'numeric',
@@ -43,7 +43,7 @@
 					<a href={`https://news.ycombinator.com/user?id=${story.by}`}> by {story.by}</a> • {story.score}
 					points •
 					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
-						>{story.descendants} comments</a
+						>{story.descendants || '0'} comments</a
 					>
 					• {new Date(story.time * 1000).toLocaleDateString('en-NZ', {
 						year: 'numeric',
@@ -66,7 +66,7 @@
 					<a href={`https://news.ycombinator.com/user?id=${story.by}`}> by {story.by}</a> • {story.score}
 					points •
 					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
-						>{story.descendants} comments</a
+						>{story.descendants || '0'} comments</a
 					>
 					• {new Date(story.time * 1000).toLocaleDateString('en-NZ', {
 						year: 'numeric',

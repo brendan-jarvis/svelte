@@ -138,6 +138,13 @@
 		text-align: center;
 	}
 
+	label {
+		display: flex;
+		justify-content: center;
+		align-items: baseline;
+		gap: 1rem;
+	}
+
 	.container {
 		display: flex;
 		flex-direction: row;

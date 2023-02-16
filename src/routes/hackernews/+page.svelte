@@ -37,49 +37,55 @@
 	};
 
 	const pointsSort = () => {
-		if (sort === 'points') {
+		if (sort === 'points' || sort === 'points-reverse') {
 			topStories = topStories.reverse();
 			bestStories = bestStories.reverse();
 			newStories = newStories.reverse();
-			sort = 'points-reverse';
+
+			sort = sort === 'points' ? 'points-reverse' : 'points';
+
 			return;
 		}
 
-		topStories = topStories.slice().sort((a, b) => b.score - a.score);
-		bestStories = bestStories.slice().sort((a, b) => b.score - a.score);
-		newStories = newStories.slice().sort((a, b) => b.score - a.score);
+		topStories = topStories.sort((a, b) => b.score - a.score);
+		bestStories = bestStories.sort((a, b) => b.score - a.score);
+		newStories = newStories.sort((a, b) => b.score - a.score);
 
 		sort = 'points';
 	};
 
 	const commentsSort = () => {
-		if (sort === 'comments') {
+		if (sort === 'comments' || sort === 'comments-reverse') {
 			topStories = topStories.reverse();
 			bestStories = bestStories.reverse();
 			newStories = newStories.reverse();
-			sort = 'comments-reverse';
+
+			sort = sort === 'comments' ? 'comments-reverse' : 'comments';
+
 			return;
 		}
 
-		topStories = topStories.slice().sort((a, b) => b.descendants - a.descendants);
-		bestStories = bestStories.slice().sort((a, b) => b.descendants - a.descendants);
-		newStories = newStories.slice().sort((a, b) => b.descendants - a.descendants);
+		topStories = topStories.sort((a, b) => b.descendants - a.descendants);
+		bestStories = bestStories.sort((a, b) => b.descendants - a.descendants);
+		newStories = newStories.sort((a, b) => b.descendants - a.descendants);
 
 		sort = 'comments';
 	};
 
 	const dateSort = () => {
-		if (sort === 'date') {
+		if (sort === 'date' || sort === 'date-reverse') {
 			topStories = topStories.reverse();
 			bestStories = bestStories.reverse();
 			newStories = newStories.reverse();
-			sort = 'date-reverse';
+
+			sort = sort === 'date' ? 'date-reverse' : 'date';
+
 			return;
 		}
 
-		topStories = topStories.slice().sort((a, b) => b.time - a.time);
-		bestStories = bestStories.slice().sort((a, b) => b.time - a.time);
-		newStories = newStories.slice().sort((a, b) => b.time - a.time);
+		topStories = topStories.sort((a, b) => b.time - a.time);
+		bestStories = bestStories.sort((a, b) => b.time - a.time);
+		newStories = newStories.sort((a, b) => b.time - a.time);
 
 		sort = 'date';
 	};

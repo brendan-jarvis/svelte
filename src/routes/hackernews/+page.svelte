@@ -142,7 +142,19 @@
 		display: flex;
 		justify-content: center;
 		align-items: baseline;
+		font-size: larger;
 		gap: 1rem;
+	}
+
+	label button {
+		background-color: var(--aurora-3);
+		color: var(--polar-night-1);
+		font-size: 1rem;
+		font-weight: bold;
+		border: none;
+		border-radius: 0.2rem;
+		padding: 0.3rem;
+		cursor: pointer;
 	}
 
 	.container {

@@ -6,14 +6,19 @@
 	const { topStories, bestStories, newStories } = data;
 
 	const changeSort = (e, stories) => {
-		console.log('change sort', e.target.value, stories);
-    if(e.target.value === 'points') {
-      stories = stories.sort((a, b) => b.score - a.score);
-    } else if(e.target.value === 'comments') {
-      stories = stories.sort((a, b) => b.descendants - a.descendants);
-    } else if(e.target.value === 'date') {
-      stories = stories.sort((a, b) => b.time - a.time);
-    }
+		let sortedStories;
+
+		if (e.target.value === 'points') {
+			sortedStories = stories.slice().sort((a, b) => b.score - a.score);
+		} else if (e.target.value === 'comments') {
+			sortedStories = stories.slice().sort((a, b) => b.descendants - a.descendants);
+		} else if (e.target.value === 'date') {
+			sortedStories = stories.slice().sort((a, b) => b.time - a.time);
+		}
+
+		if (sortedStories) {
+			stories.splice(0, stories.length, ...sortedStories);
+		}
 	};
 </script>
 
@@ -21,12 +26,14 @@
 <div class="container">
 	<div class="posts">
 		<h2>Top Stories</h2>
-		<label>Sort by</label>
-		<button value="points" on:click={(e) => changeSort(e, topStories)}>Points</button>
-		<button value="comments" on:click={(e) => changeSort(e, topStories)}>Comments</button>
-		<button value="date" on:click={(e) => changeSort(e, topStories)}>Date posted</button>
+		<label
+			>Sort by
+			<button value="points" on:click={(e) => changeSort(e, topStories)}>Points</button>
+			<button value="comments" on:click={(e) => changeSort(e, topStories)}>Comments</button>
+			<button value="date" on:click={(e) => changeSort(e, topStories)}>Date posted</button>
+		</label>
 
-		{#each topStories as story}
+		{#each topStories as story (story)}
 			<div class="post">
 				<div class="post-header">
 					<a href={story.url} class="post-title">{story.title}</a>
@@ -49,11 +56,13 @@
 	</div>
 	<div class="posts">
 		<h2>Best Posts</h2>
-    <label>Sort by</label>
-		<button value="points" on:click={(e) => changeSort(e, topStories)}>Points</button>
-		<button value="comments" on:click={(e) => changeSort(e, topStories)}>Comments</button>
-		<button value="date" on:click={(e) => changeSort(e, topStories)}>Date posted</button>
-		{#each bestStories as story}
+		<label
+			>Sort by
+			<button value="points" on:click={(e) => changeSort(e, topStories)}>Points</button>
+			<button value="comments" on:click={(e) => changeSort(e, topStories)}>Comments</button>
+			<button value="date" on:click={(e) => changeSort(e, topStories)}>Date posted</button></label
+		>
+		{#each bestStories as story (story)}
 			<div class="post">
 				<div class="post-header">
 					<a href={story.url} class="post-title">{story.title}</a>
@@ -76,11 +85,13 @@
 	</div>
 	<div class="posts">
 		<h2>New Posts</h2>
-    <label>Sort by</label>
-		<button value="points" on:click={(e) => changeSort(e, topStories)}>Points</button>
-		<button value="comments" on:click={(e) => changeSort(e, topStories)}>Comments</button>
-		<button value="date" on:click={(e) => changeSort(e, topStories)}>Date posted</button>
-		{#each newStories as story}
+		<label
+			>Sort by
+			<button value="points" on:click={(e) => changeSort(e, topStories)}>Points</button>
+			<button value="comments" on:click={(e) => changeSort(e, topStories)}>Comments</button>
+			<button value="date" on:click={(e) => changeSort(e, topStories)}>Date posted</button></label
+		>
+		{#each newStories as story (story)}
 			<div class="post">
 				<div class="post-header">
 					<a href={story.url} class="post-title">{story.title}</a>

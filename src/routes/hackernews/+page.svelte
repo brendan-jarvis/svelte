@@ -1,14 +1,37 @@
 <script lang="ts">
 	export let data;
 
-	const { topStories } = data;
+	const { topStories, bestStories } = data;
 </script>
 
+<h1>Hackernews</h1>
 <div class="container">
-	<h1>Hackernews</h1>
-	<h2>Top Stories</h2>
 	<div class="posts">
+		<h2>Top Stories</h2>
 		{#each topStories as story}
+			<div class="post">
+				<div class="post-header">
+					<a href={story.url} class="post-title">{story.title}</a>
+					<span class={`story-type ${story.type}`}>{story.type}</span>
+				</div>
+				<div class="post-info">
+					<a href={`https://news.ycombinator.com/user?id=${story.by}`}> by {story.by}</a> • {story.score}
+					points •
+					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
+						>{story.descendants} comments</a
+					>
+					• {new Date(story.time * 1000).toLocaleDateString('en-NZ', {
+						year: 'numeric',
+						month: 'long',
+						day: 'numeric'
+					})}
+				</div>
+			</div>
+		{/each}
+	</div>
+	<div class="posts">
+		<h2>Best Posts</h2>
+		{#each bestStories as story}
 			<div class="post">
 				<div class="post-header">
 					<a href={story.url} class="post-title">{story.title}</a>
@@ -41,7 +64,13 @@
 		text-align: center;
 	}
 
+	.container {
+		display: flex;
+		flex-direction: row;
+	}
+
 	.post {
+		flex: 1;
 		margin-bottom: 1rem;
 	}
 

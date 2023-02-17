@@ -239,8 +239,4 @@
 		font-weight: 500;
 		color: var(--aurora-4);
 	}
-
-	a:visited {
-		color: var(--aurora-5);
-	}
 </style>

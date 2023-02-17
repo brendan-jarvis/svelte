@@ -145,7 +145,7 @@ a {
 }
 
 a:visited {
-  color: var(--frost-3);
+  color: var(--aurora-5);
 }
 
 a:hover {

@@ -203,7 +203,6 @@
 	}
 
 	.post {
-		flex: 1;
 		margin-bottom: 1rem;
 	}
 
@@ -238,6 +237,10 @@
 	.post-title {
 		font-size: 1.2rem;
 		font-weight: 500;
-		color: var(--frost-1);
+		color: var(--aurora-4);
+	}
+
+	a:visited {
+		color: var(--aurora-5);
 	}
 </style>

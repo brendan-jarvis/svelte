@@ -200,6 +200,7 @@
 	.container {
 		display: flex;
 		flex-direction: row;
+		justify-content: center;
 	}
 
 	.post {

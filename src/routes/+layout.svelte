@@ -23,7 +23,6 @@
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
-		width: 100%;
 		height: 50px;
 		background-color: var(--polar-night-3);
 		color: var(--snow-storm-1);
@@ -45,7 +44,6 @@
 	nav,
 	footer {
 		text-transform: uppercase;
-		width: 100%;
 	}
 
 	footer {

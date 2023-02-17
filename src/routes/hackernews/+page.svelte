@@ -120,7 +120,11 @@
 				<div class="post-header">
 					<a href={story.url} class="post-title">{story.title}</a>
 					<span class="story-url"
-						>({story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]})</span
+						>(<a
+							href={`https://news.ycombinator.com/from?site=${
+								story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
+							}`}>{story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
+						>)</span
 					>
 					<span class={`story-type ${story.type}`}>{story.type}</span>
 				</div>
@@ -142,7 +146,11 @@
 				<div class="post-header">
 					<a href={story.url} class="post-title">{story.title}</a>
 					<span class="story-url"
-						>({story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]})</span
+						>(<a
+							href={`https://news.ycombinator.com/from?site=${
+								story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
+							}`}>{story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
+						>)</span
 					>
 					<span class={`story-type ${story.type}`}>{story.type}</span>
 				</div>
@@ -164,7 +172,11 @@
 				<div class="post-header">
 					<a href={story.url} class="post-title">{story.title}</a>
 					<span class="story-url"
-						>({story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]})</span
+						>(<a
+							href={`https://news.ycombinator.com/from?site=${
+								story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
+							}`}>{story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
+						>)</span
 					>
 					<span class={`story-type ${story.type}`}>{story.type}</span>
 				</div>

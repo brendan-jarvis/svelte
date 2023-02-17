@@ -36,6 +36,10 @@
 		}
 	};
 
+	const formatURL = (url: string): string => {
+		return url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0];
+	};
+
 	const pointsSort = () => {
 		if (sort === 'points' || sort === 'points-reverse') {
 			topStories = topStories.reverse();
@@ -115,6 +119,9 @@
 			<div class="post">
 				<div class="post-header">
 					<a href={story.url} class="post-title">{story.title}</a>
+					<span class="story-url"
+						>({story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]})</span
+					>
 					<span class={`story-type ${story.type}`}>{story.type}</span>
 				</div>
 				<div class="post-info">
@@ -134,6 +141,9 @@
 			<div class="post">
 				<div class="post-header">
 					<a href={story.url} class="post-title">{story.title}</a>
+					<span class="story-url"
+						>({story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]})</span
+					>
 					<span class={`story-type ${story.type}`}>{story.type}</span>
 				</div>
 				<div class="post-info">
@@ -153,6 +163,9 @@
 			<div class="post">
 				<div class="post-header">
 					<a href={story.url} class="post-title">{story.title}</a>
+					<span class="story-url"
+						>({story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]})</span
+					>
 					<span class={`story-type ${story.type}`}>{story.type}</span>
 				</div>
 				<div class="post-info">

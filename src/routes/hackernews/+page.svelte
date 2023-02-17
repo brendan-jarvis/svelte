@@ -4,6 +4,20 @@
 	export let data: PageData;
 
 	let { topStories, bestStories, newStories } = data;
+	$: stories = [
+		{
+			title: 'Top Stories',
+			data: topStories
+		},
+		{
+			title: 'Best Stories',
+			data: bestStories
+		},
+		{
+			title: 'New Stories',
+			data: newStories
+		}
+	];
 	let sort: string;
 
 	const formatDate = (timestamp: number): string => {
@@ -34,10 +48,6 @@
 			// more than 24 hours ago
 			return date.toLocaleDateString('en-NZ', options);
 		}
-	};
-
-	const formatURL = (url: string): string => {
-		return url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0];
 	};
 
 	const pointsSort = () => {
@@ -114,7 +124,35 @@
 </label>
 <div class="container">
 	<div class="posts">
-		<h2>Top Stories</h2>
+		{#each stories as post (post)}
+			<h2>{post.title}</h2>
+			{#each post.data as story (story)}
+				<div class="post">
+					<div class="post-header">
+						<a href={story.url} class="post-title">{story.title}</a>
+						<span class="story-url"
+							>(<a
+								href={`https://news.ycombinator.com/from?site=${
+									story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
+								}`}>{story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
+							>)</span
+						>
+						<span class={`story-type ${story.type}`}>{story.type}</span>
+					</div>
+					<div class="post-info">
+						<a href={`https://news.ycombinator.com/user?id=${story.by}`}> by {story.by}</a> • {story.score}
+						points •
+						<a href={`https://news.ycombinator.com/item?id=${story.id}`}
+							>{story.descendants || '0'} comments</a
+						>
+						• {formatDate(story.time)}
+					</div>
+				</div>
+			{/each}
+		{/each}
+	</div>
+
+	<!-- <h2>Top Stories</h2>
 		{#each topStories as story (story)}
 			<div class="post">
 				<div class="post-header">
@@ -190,7 +228,7 @@
 				</div>
 			</div>
 		{/each}
-	</div>
+	</div> -->
 </div>
 
 <svelte:head>

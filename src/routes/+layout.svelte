@@ -1,14 +1,20 @@
-<script>
-	let routes = [
-		{ href: '/', text: 'Home' },
-		{ href: '/hackernews', text: 'Hackernews' },
-		{ href: '/about', text: 'About' }
+<script lang="ts">
+	type Route = {
+		href: string;
+		text: string;
+		preload: true | '' | 'hover' | 'off' | null | undefined;
+	};
+
+	let routes: Route[] = [
+		{ href: '/', text: 'Home', preload: 'hover' },
+		{ href: '/hackernews', text: 'Hackernews', preload: 'off' },
+		{ href: '/about', text: 'About', preload: 'hover' }
 	];
 </script>
 
 <nav>
 	{#each routes as route}
-		<a href={route.href}>{route.text}</a>
+		<a href={route.href} data-sveltekit-preload-data={route.preload}>{route.text}</a>
 	{/each}
 </nav>
 

@@ -97,7 +97,7 @@
 		flex-direction: column; /* add this property to stack child elements vertically */
 		justify-content: center;
 		align-items: center;
-		height: 100vh;
+		height: 50vh;
 	}
 
 	.lds-ring-parent h1 {

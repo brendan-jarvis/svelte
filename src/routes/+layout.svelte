@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { navigating, page } from '$app/stores';
+
 	type Route = {
 		href: string;
 		text: string;
@@ -14,12 +16,32 @@
 
 <nav>
 	{#each routes as route}
-		<a href={route.href} data-sveltekit-preload-data={route.preload}>{route.text}</a>
+		<a
+			href={route.href}
+			data-sveltekit-preload-data={route.preload}
+			class:active={$page.url.pathname === route.href}>{route.text}</a
+		>
 	{/each}
 </nav>
 
 <main>
-	<slot />
+	{#if $navigating}
+		<div class="lds-ring-parent">
+			<h1>Loading ...</h1>
+			<div class="lds-ring" style="margin: 0 auto;">
+				<div />
+				<div />
+				<div />
+				<div />
+				<div />
+				<div />
+				<div />
+				<div />
+			</div>
+		</div>
+	{:else}
+		<slot />
+	{/if}
 </main>
 
 <footer>Made by Brendan Jarvis while learning Svelte in 2023</footer>
@@ -47,6 +69,14 @@
 		color: var(--frost-2);
 	}
 
+	nav a.active {
+		color: var(--frost-3);
+	}
+
+	nav a.active:hover {
+		color: var(--frost-2);
+	}
+
 	nav,
 	footer {
 		text-transform: uppercase;
@@ -59,5 +89,54 @@
 		color: var(--frost-1);
 		background-color: var(--polar-night-3);
 		font-family: 'Roboto Mono', monospace;
+	}
+
+	/* LDS Loading animation from loading.io/css */
+	.lds-ring-parent {
+		display: flex;
+		flex-direction: column; /* add this property to stack child elements vertically */
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+	}
+
+	.lds-ring-parent h1 {
+		margin-bottom: 1rem; /* add some margin below the h1 to create space between it and the spinner */
+	}
+
+	.lds-ring {
+		display: inline-block;
+		position: relative;
+		width: 80px;
+		height: 80px;
+	}
+	.lds-ring div {
+		box-sizing: border-box;
+		display: block;
+		position: absolute;
+		width: 64px;
+		height: 64px;
+		margin: 8px;
+		border: 8px solid #fff;
+		border-radius: 50%;
+		animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+		border-color: #fff transparent transparent transparent;
+	}
+	.lds-ring div:nth-child(1) {
+		animation-delay: -0.45s;
+	}
+	.lds-ring div:nth-child(2) {
+		animation-delay: -0.3s;
+	}
+	.lds-ring div:nth-child(3) {
+		animation-delay: -0.15s;
+	}
+	@keyframes lds-ring {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
 	}
 </style>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { browser } from '$app/environment';
 
 	export let data: PageData;
 
@@ -21,12 +20,6 @@
 	];
 	let sort: string;
 	let selectedView = 'top-stories';
-	let isSmallScreen: boolean;
-	if (browser) {
-		isSmallScreen = window.innerWidth < 950;
-	}
-
-	$: isSmallScreen;
 
 	const formatDate = (timestamp: number): string => {
 		const date = new Date(timestamp * 1000);
@@ -128,7 +121,7 @@
 </label>
 
 <label id="story-select"
-	>View:
+	>View by:
 	<select bind:value={selectedView} name="stories">
 		<option value="top-stories">Top Stories</option>
 		<option value="best-stories">Best Stories</option>

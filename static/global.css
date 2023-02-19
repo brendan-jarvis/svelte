@@ -37,7 +37,7 @@ body {
 
 main {
   background-color: var(--polar-night-1);
-  padding: 1rem 1rem 1rem;
+  padding: 1rem;
   border-radius: 5px;
   width: 90%;
   margin: 0 auto;

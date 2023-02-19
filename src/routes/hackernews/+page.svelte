@@ -123,8 +123,8 @@
 	>
 </label>
 <div class="container">
-	<div class="posts">
-		{#each stories as post (post)}
+	{#each stories as post (post)}
+		<div class="posts">
 			<h2>{post.title}</h2>
 			{#each post.data as story (story)}
 				<div class="post">
@@ -149,8 +149,8 @@
 					</div>
 				</div>
 			{/each}
-		{/each}
-	</div>
+		</div>
+	{/each}
 
 	<!-- <h2>Top Stories</h2>
 		{#each topStories as story (story)}
@@ -261,9 +261,9 @@
 	}
 
 	.container {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-gap: 1rem;
 	}
 
 	.post {

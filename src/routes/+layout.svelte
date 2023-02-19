@@ -1,8 +1,8 @@
 <script>
 	let routes = [
 		{ href: '/', text: 'Home' },
-		{ href: '/kittens', text: 'Kittens' },
-		{ href: '/get-cat', text: 'Random Cat' }
+		{ href: '/hackernews', text: 'Hackernews Viewer' },
+		{ href: '/about', text: 'About' }
 	];
 </script>
 

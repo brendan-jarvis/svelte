@@ -3,10 +3,10 @@ import { error } from '@sveltejs/kit';
 
 export const load = (async ({ fetch }) => {
 	const fetchStories = async (url: string) => {
-		const res = await fetch(url);
+		const res = await fetch(`https://hacker-news.firebaseio.com/v0/${url}.json?print=pretty`);
 		const storyIds = await res.json();
 
-		const fiftyStories = storyIds.slice(0, 50);
+		const fiftyStories = storyIds.slice(0, 30);
 
 		if (!res.ok) {
 			throw error(res.status, `Something went wrong fetching stories from Hacker News: ${url}`);
@@ -26,9 +26,9 @@ export const load = (async ({ fetch }) => {
 	};
 
 	const [topStories, bestStories, newStories] = await Promise.all([
-		fetchStories('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty'),
-		fetchStories('https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty'),
-		fetchStories('https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty')
+		fetchStories('topstories'),
+		fetchStories('beststories'),
+		fetchStories('newstories')
 	]);
 
 	return {

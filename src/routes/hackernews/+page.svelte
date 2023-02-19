@@ -151,84 +151,6 @@
 			{/each}
 		</div>
 	{/each}
-
-	<!-- <h2>Top Stories</h2>
-		{#each topStories as story (story)}
-			<div class="post">
-				<div class="post-header">
-					<a href={story.url} class="post-title">{story.title}</a>
-					<span class="story-url"
-						>(<a
-							href={`https://news.ycombinator.com/from?site=${
-								story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
-							}`}>{story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
-						>)</span
-					>
-					<span class={`story-type ${story.type}`}>{story.type}</span>
-				</div>
-				<div class="post-info">
-					<a href={`https://news.ycombinator.com/user?id=${story.by}`}> by {story.by}</a> • {story.score}
-					points •
-					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
-						>{story.descendants || '0'} comments</a
-					>
-					• {formatDate(story.time)}
-				</div>
-			</div>
-		{/each}
-	</div>
-	<div class="posts">
-		<h2>Best Posts</h2>
-		{#each bestStories as story (story)}
-			<div class="post">
-				<div class="post-header">
-					<a href={story.url} class="post-title">{story.title}</a>
-					<span class="story-url"
-						>(<a
-							href={`https://news.ycombinator.com/from?site=${
-								story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
-							}`}>{story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
-						>)</span
-					>
-					<span class={`story-type ${story.type}`}>{story.type}</span>
-				</div>
-				<div class="post-info">
-					<a href={`https://news.ycombinator.com/user?id=${story.by}`}> by {story.by}</a> • {story.score}
-					points •
-					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
-						>{story.descendants || '0'} comments</a
-					>
-					• {formatDate(story.time)}
-				</div>
-			</div>
-		{/each}
-	</div>
-	<div class="posts">
-		<h2>New Posts</h2>
-		{#each newStories as story (story)}
-			<div class="post">
-				<div class="post-header">
-					<a href={story.url} class="post-title">{story.title}</a>
-					<span class="story-url"
-						>(<a
-							href={`https://news.ycombinator.com/from?site=${
-								story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
-							}`}>{story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
-						>)</span
-					>
-					<span class={`story-type ${story.type}`}>{story.type}</span>
-				</div>
-				<div class="post-info">
-					<a href={`https://news.ycombinator.com/user?id=${story.by}`}> by {story.by}</a> • {story.score}
-					points •
-					<a href={`https://news.ycombinator.com/item?id=${story.id}`}
-						>{story.descendants || '0'} comments</a
-					>
-					• {formatDate(story.time)}
-				</div>
-			</div>
-		{/each}
-	</div> -->
 </div>
 
 <svelte:head>
@@ -237,6 +159,24 @@
 </svelte:head>
 
 <style>
+	@media (max-width: 950px) {
+		.container {
+			grid-template-columns: repeat(1, 1fr) !important;
+		}
+
+		.post {
+			font-size: smaller;
+			width: 90%;
+		}
+	}
+
+	.container {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-auto-rows: minmax(100px, auto);
+		grid-gap: 1rem;
+	}
+
 	h1 {
 		text-align: center;
 	}
@@ -252,7 +192,7 @@
 	label button {
 		background-color: var(--aurora-3);
 		color: var(--polar-night-1);
-		font-size: 1rem;
+		font-size: smaller;
 		font-weight: bold;
 		border: none;
 		border-radius: 0.2rem;
@@ -260,14 +200,23 @@
 		cursor: pointer;
 	}
 
-	.container {
+	.post-title {
+		font-size: large;
+		font-weight: bold;
+		color: var(--aurora-4);
+	}
+
+	.posts {
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-columns: 1fr;
+		grid-auto-rows: minmax(100px, auto);
 		grid-gap: 1rem;
 	}
 
 	.post {
-		margin-bottom: 1rem;
+		display: flex;
+		flex-direction: column;
+		align-items: space-around;
 	}
 
 	.story-type {
@@ -296,11 +245,5 @@
 
 	.pollopt {
 		background-color: var(--aurora-5);
-	}
-
-	.post-title {
-		font-size: 1.2rem;
-		font-weight: 500;
-		color: var(--aurora-4);
 	}
 </style>

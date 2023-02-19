@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import { browser } from '$app/environment';
 
 	export let data: PageData;
 
@@ -19,6 +20,13 @@
 		}
 	];
 	let sort: string;
+	let selectedView = 'top-stories';
+	let isSmallScreen: boolean;
+	if (browser) {
+		isSmallScreen = window.innerWidth < 950;
+	}
+
+	$: isSmallScreen;
 
 	const formatDate = (timestamp: number): string => {
 		const date = new Date(timestamp * 1000);
@@ -103,10 +111,6 @@
 
 		sort = 'date';
 	};
-
-	$: topStories = topStories;
-	$: bestStories = bestStories;
-	$: newStories = newStories;
 </script>
 
 <h1>Hackernews</h1>
@@ -122,9 +126,25 @@
 		>Date posted{#if sort === 'date'}▼{/if}{#if sort === 'date-reverse'}▲{/if}</button
 	>
 </label>
+
+<label id="story-select"
+	>View:
+	<select bind:value={selectedView} name="stories">
+		<option value="top-stories">Top Stories</option>
+		<option value="best-stories">Best Stories</option>
+		<option value="new-stories">New Stories</option>
+	</select>
+</label>
+
 <div class="container">
 	{#each stories as post (post)}
-		<div class="posts">
+		<div
+			class={`posts ${
+				selectedView === post.title.toLowerCase().replaceAll(' ', '-')
+					? 'selected-view'
+					: 'unselected-view'
+			}`}
+		>
 			<h2>{post.title}</h2>
 			{#each post.data as story (story)}
 				<div class="post">
@@ -164,9 +184,33 @@
 			grid-template-columns: repeat(1, 1fr) !important;
 		}
 
+		.posts {
+			grid-auto-rows: minmax(50px, auto) !important;
+		}
+
 		.post {
 			font-size: smaller;
 			width: 90%;
+		}
+
+		.unselected-view {
+			display: none !important;
+		}
+
+		h2 {
+			display: none;
+		}
+
+		#story-select {
+			display: block;
+			width: 100%;
+			margin-bottom: 1rem;
+		}
+	}
+
+	@media (min-width: 950px) {
+		#story-select {
+			display: none;
 		}
 	}
 
@@ -191,6 +235,18 @@
 
 	label button {
 		background-color: var(--aurora-3);
+		color: var(--polar-night-1);
+		font-size: smaller;
+		font-weight: bold;
+		border: none;
+		border-radius: 0.2rem;
+		padding: 0.3rem;
+		cursor: pointer;
+	}
+
+	label select {
+		background-color: var(--aurora-3);
+		text-transform: uppercase;
 		color: var(--polar-night-1);
 		font-size: smaller;
 		font-weight: bold;

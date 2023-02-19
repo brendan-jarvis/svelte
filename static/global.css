@@ -30,6 +30,7 @@ body {
     var(--polar-night-4) 0%,
     var(--polar-night-1) 100%
   );
+  background-attachment: fixed; 
   color: var(--snow-storm-1);
   font-family: 'Roboto', sans-serif;
   margin: 0;

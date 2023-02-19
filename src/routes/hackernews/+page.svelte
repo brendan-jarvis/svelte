@@ -167,8 +167,8 @@
 </div>
 
 <svelte:head>
-	<title>Hackernews - Svelte by Brendan Jarvis</title>
-	<meta name="description" content="A website built using Svelte by Brendan Jarvis" />
+	<title>Hackernews Viewer - by Brendan Jarvis</title>
+	<meta name="description" content="Hackernews viewer built using Svelte by Brendan Jarvis" />
 </svelte:head>
 
 <style>

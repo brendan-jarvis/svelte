@@ -4,6 +4,7 @@
 	export let data: PageData;
 
 	let { topStories, bestStories, newStories } = data;
+
 	$: stories = [
 		{
 			title: 'Top Stories',
@@ -143,13 +144,15 @@
 				<div class="post">
 					<div class="post-header">
 						<a href={story.url} class="post-title">{story.title}</a>
-						<span class="story-url"
-							>(<a
-								href={`https://news.ycombinator.com/from?site=${
-									story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
-								}`}>{story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
-							>)</span
-						>
+						{#if story.url}
+							<span class="story-url"
+								>(<a
+									href={`https://news.ycombinator.com/from?site=${
+										story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
+									}`}>{story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
+								>)</span
+							>
+						{/if}
 						<span class={`story-type ${story.type}`}>{story.type}</span>
 					</div>
 					<div class="post-info">

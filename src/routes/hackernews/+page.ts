@@ -6,7 +6,7 @@ export const load = (async ({ fetch }) => {
 		const res = await fetch(`https://hacker-news.firebaseio.com/v0/${url}.json?print=pretty`);
 		const storyIds = await res.json();
 
-		const fiftyStories = storyIds.slice(0, 30);
+		const fiftyStories = storyIds.slice(0, 50);
 
 		if (!res.ok) {
 			throw error(res.status, `Something went wrong fetching stories from Hacker News: ${url}`);

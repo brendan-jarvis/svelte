@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { navigating, page } from '$app/stores';
-	import { fade } from 'svelte/transition';
 
 	type Route = {
 		href: string;
@@ -12,6 +11,20 @@
 		{ href: '/', text: 'Home', preload: 'hover' },
 		{ href: '/hackernews', text: 'Hackernews', preload: 'off' }
 	];
+
+	let showSpinner = false;
+	let timer: NodeJS.Timeout;
+
+	$: {
+		if ($navigating) {
+			timer = setTimeout(() => {
+				showSpinner = true;
+			}, 250);
+		} else {
+			clearTimeout(timer);
+			showSpinner = false;
+		}
+	}
 </script>
 
 <nav>
@@ -25,10 +38,10 @@
 </nav>
 
 <main>
-	{#if $navigating}
-		<div class="lds-ring-parent" transition:fade={{ delay: 250 }}>
+	{#if showSpinner}
+		<div class="lds-ring-parent">
 			<h1>Loading ...</h1>
-			<div class="lds-ring" style="margin: 0 auto;">
+			<div class="lds-ring">
 				<div />
 				<div />
 				<div />
@@ -109,6 +122,7 @@
 		position: relative;
 		width: 80px;
 		height: 80px;
+		margin: 0 auto;
 	}
 	.lds-ring div {
 		box-sizing: border-box;

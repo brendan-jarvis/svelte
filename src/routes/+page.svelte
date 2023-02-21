@@ -1,3 +1,7 @@
+<script>
+	export const prerender = true;
+</script>
+
 <svelte:head>
 	<title>Svelte by Brendan Jarvis</title>
 	<meta name="description" content="A website built using Svelte by Brendan Jarvis" />

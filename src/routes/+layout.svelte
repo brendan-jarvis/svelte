@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { navigating, page } from '$app/stores';
+	import { fade } from 'svelte/transition';
 
 	type Route = {
 		href: string;
@@ -26,7 +27,7 @@
 
 <main>
 	{#if $navigating}
-		<div class="lds-ring-parent">
+		<div class="lds-ring-parent" transition:fade={{ delay: 250 }}>
 			<h1>Loading ...</h1>
 			<div class="lds-ring" style="margin: 0 auto;">
 				<div />

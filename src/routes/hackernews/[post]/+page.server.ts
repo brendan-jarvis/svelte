@@ -1,4 +1,4 @@
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
 export const load = (async ({ fetch, params }) => {
@@ -29,4 +29,4 @@ export const load = (async ({ fetch, params }) => {
 		storyData,
 		commentData: await Promise.all(commentDataPromises)
 	};
-}) satisfies PageLoad;
+}) satisfies PageServerLoad;

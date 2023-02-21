@@ -1,4 +1,4 @@
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
 export const load = (async ({ fetch }) => {
@@ -36,4 +36,4 @@ export const load = (async ({ fetch }) => {
 		bestStories,
 		newStories
 	};
-}) satisfies PageLoad;
+}) satisfies PageServerLoad;

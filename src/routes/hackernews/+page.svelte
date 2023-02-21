@@ -144,22 +144,27 @@
 			{#each post.data as story (story)}
 				<div class="post">
 					<div class="post-header">
-						<a href={story.url} class="post-title">{story.title}</a>
+						<a href={story.url} class="post-title" target="”_blank”">{story.title}</a>
 						{#if story.url}
 							<span class="story-url"
 								>(<a
 									href={`https://news.ycombinator.com/from?site=${
 										story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
-									}`}>{story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
+									}`}
+									target="”_blank”"
+									>{story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
 								>)</span
 							>
 						{/if}
 						<span class={`story-type ${story.type}`}>{story.type}</span>
 					</div>
 					<div class="post-info">
-						<a href={`https://news.ycombinator.com/user?id=${story.by}`}> by {story.by}</a> • {story.score}
+						<a href={`https://news.ycombinator.com/user?id=${story.by}`} target="”_blank”">
+							by {story.by}</a
+						>
+						• {story.score}
 						points •
-						<a href={`https://news.ycombinator.com/item?id=${story.id}`}
+						<a href={`https://news.ycombinator.com/item?id=${story.id}`} target="”_blank”"
 							>{story.descendants || '0'} comments</a
 						>
 						• {formatDate(story.time)}

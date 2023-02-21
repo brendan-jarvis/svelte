@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import { fade } from 'svelte/transition';
 
 	export let data: PageData;
 
@@ -130,7 +131,7 @@
 	</select>
 </label>
 
-<div class="container">
+<div class="container" in:fade={{ delay: 250 }}>
 	{#each stories as post (post)}
 		<div
 			class={`posts ${

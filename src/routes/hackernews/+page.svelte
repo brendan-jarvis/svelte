@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { fade } from 'svelte/transition';
+	import Story from './Story.svelte';
 
 	export let data: PageData;
 
@@ -23,36 +24,6 @@
 	let sort: string;
 	let selectedView = 'top-stories';
 
-	const formatDate = (timestamp: number): string => {
-		const date = new Date(timestamp * 1000);
-		const now = new Date();
-		const diff = (now.getTime() - date.getTime()) / 1000; // time difference in seconds
-		const options: Intl.DateTimeFormatOptions = {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric'
-		};
-
-		if (diff < 3600) {
-			// less than 60 minutes ago
-			const minutes = Math.floor(diff / 60);
-			if (minutes === 1) {
-				return `${minutes} minute ago`;
-			}
-			return `${minutes} minutes ago`;
-		} else if (diff < 86400) {
-			// less than 24 hours ago
-			const hours = Math.floor(diff / 3600);
-			if (hours === 1) {
-				return `${hours} hour ago`;
-			}
-			return `${hours} hours ago`;
-		} else {
-			// more than 24 hours ago
-			return date.toLocaleDateString('en-NZ', options);
-		}
-	};
-
 	const pointsSort = () => {
 		if (sort === 'points' || sort === 'points-reverse') {
 			topStories = topStories.reverse();
@@ -64,9 +35,11 @@
 			return;
 		}
 
-		topStories = topStories.sort((a, b) => b.score - a.score);
-		bestStories = bestStories.sort((a, b) => b.score - a.score);
-		newStories = newStories.sort((a, b) => b.score - a.score);
+		topStories = topStories.sort((a: { score: number }, b: { score: number }) => b.score - a.score);
+		bestStories = bestStories.sort(
+			(a: { score: number }, b: { score: number }) => b.score - a.score
+		);
+		newStories = newStories.sort((a: { score: number }, b: { score: number }) => b.score - a.score);
 
 		sort = 'points';
 	};
@@ -82,9 +55,15 @@
 			return;
 		}
 
-		topStories = topStories.sort((a, b) => b.descendants - a.descendants);
-		bestStories = bestStories.sort((a, b) => b.descendants - a.descendants);
-		newStories = newStories.sort((a, b) => b.descendants - a.descendants);
+		topStories = topStories.sort(
+			(a: { descendants: number }, b: { descendants: number }) => b.descendants - a.descendants
+		);
+		bestStories = bestStories.sort(
+			(a: { descendants: number }, b: { descendants: number }) => b.descendants - a.descendants
+		);
+		newStories = newStories.sort(
+			(a: { descendants: number }, b: { descendants: number }) => b.descendants - a.descendants
+		);
 
 		sort = 'comments';
 	};
@@ -100,9 +79,9 @@
 			return;
 		}
 
-		topStories = topStories.sort((a, b) => b.time - a.time);
-		bestStories = bestStories.sort((a, b) => b.time - a.time);
-		newStories = newStories.sort((a, b) => b.time - a.time);
+		topStories = topStories.sort((a: { time: number }, b: { time: number }) => b.time - a.time);
+		bestStories = bestStories.sort((a: { time: number }, b: { time: number }) => b.time - a.time);
+		newStories = newStories.sort((a: { time: number }, b: { time: number }) => b.time - a.time);
 
 		sort = 'date';
 	};
@@ -142,34 +121,7 @@
 		>
 			<h2>{post.title}</h2>
 			{#each post.data as story (story)}
-				<div class="post">
-					<div class="post-header">
-						<a href={story.url} class="post-title" target="”_blank”">{story.title}</a>
-						{#if story.url}
-							<span class="story-url"
-								>(<a
-									href={`https://news.ycombinator.com/from?site=${
-										story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
-									}`}
-									target="”_blank”"
-									>{story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
-								>)</span
-							>
-						{/if}
-						<span class={`story-type ${story.type}`}>{story.type}</span>
-					</div>
-					<div class="post-info">
-						<a href={`https://news.ycombinator.com/user?id=${story.by}`} target="”_blank”">
-							by {story.by}</a
-						>
-						• {story.score}
-						points •
-						<a href={`https://news.ycombinator.com/item?id=${story.id}`} target="”_blank”"
-							>{story.descendants || '0'} comments</a
-						>
-						• {formatDate(story.time)}
-					</div>
-				</div>
+				<Story {story} />
 			{/each}
 		</div>
 	{/each}
@@ -188,11 +140,6 @@
 
 		.posts {
 			grid-auto-rows: minmax(50px, auto) !important;
-		}
-
-		.post {
-			font-size: smaller;
-			width: 90%;
 		}
 
 		.unselected-view {
@@ -258,12 +205,6 @@
 		cursor: pointer;
 	}
 
-	.post-title {
-		font-size: large;
-		font-weight: bold;
-		color: var(--aurora-4);
-	}
-
 	.posts {
 		display: grid;
 		grid-template-columns: 1fr;
@@ -275,33 +216,5 @@
 		display: flex;
 		flex-direction: column;
 		align-items: space-around;
-	}
-
-	.story-type {
-		text-transform: capitalize;
-		color: var(--polar-night-1);
-		font-size: smaller;
-		padding: 0.2rem;
-		border-radius: 0.2rem;
-	}
-
-	.job {
-		background-color: var(--aurora-1);
-	}
-
-	.story {
-		background-color: var(--aurora-2);
-	}
-
-	.comment {
-		background-color: var(--aurora-3);
-	}
-
-	.poll {
-		background-color: var(--aurora-4);
-	}
-
-	.pollopt {
-		background-color: var(--aurora-5);
 	}
 </style>

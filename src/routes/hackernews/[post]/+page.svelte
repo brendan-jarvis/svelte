@@ -3,6 +3,8 @@
 	import { page } from '$app/stores';
 	import Comment from './Comment.svelte';
 
+	import { formatDate } from '../../../lib/utils';
+
 	export let data: PageData;
 
 	const { storyData, commentData } = data;
@@ -13,13 +15,12 @@
 
 <ul>
 	<li>By {storyData.by}</li>
-	<li>{storyData.descendants}</li>
-	<li>{storyData.id}</li>
-	<li>{storyData.kids}</li>
-	<li>{storyData.score}</li>
-	<li>{storyData.time}</li>
-	<li>{storyData.type}</li>
-	<li>{storyData.url}</li>
+	<li>ID {storyData.id}</li>
+	<li>Replies {storyData.descendants}</li>
+	<li>Score {storyData.score}</li>
+	<li>Posted {formatDate(storyData.time)}</li>
+	<li>Type {storyData.type}</li>
+	<li>URL {storyData.url}</li>
 
 	<h2>Comments</h2>
 	<div class="comments">

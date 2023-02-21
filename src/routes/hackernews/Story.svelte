@@ -13,32 +13,7 @@
 		url: string;
 	};
 
-	const formatDate = (timestamp: number): string => {
-		const date = new Date(timestamp * 1000);
-		const now = new Date();
-		const diff = (now.getTime() - date.getTime()) / 1000; // time difference in seconds
-		const options: Intl.DateTimeFormatOptions = {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric'
-		};
-
-		if (diff < 3600) {
-			const minutes = Math.floor(diff / 60);
-			if (minutes === 1) {
-				return `${minutes} minute ago`;
-			}
-			return `${minutes} minutes ago`;
-		} else if (diff < 86400) {
-			const hours = Math.floor(diff / 3600);
-			if (hours === 1) {
-				return `${hours} hour ago`;
-			}
-			return `${hours} hours ago`;
-		} else {
-			return date.toLocaleDateString('en-NZ', options);
-		}
-	};
+	import { formatDate } from '../../lib/utils';
 </script>
 
 <div class="post">

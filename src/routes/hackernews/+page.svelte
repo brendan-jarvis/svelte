@@ -35,11 +35,9 @@
 			return;
 		}
 
-		topStories = topStories.sort((a: { score: number }, b: { score: number }) => b.score - a.score);
-		bestStories = bestStories.sort(
-			(a: { score: number }, b: { score: number }) => b.score - a.score
-		);
-		newStories = newStories.sort((a: { score: number }, b: { score: number }) => b.score - a.score);
+		[topStories, bestStories, newStories].forEach((stories) => {
+			stories.sort((a: { score: number }, b: { score: number }) => b.score - a.score);
+		});
 
 		sort = 'points';
 	};
@@ -55,15 +53,11 @@
 			return;
 		}
 
-		topStories = topStories.sort(
-			(a: { descendants: number }, b: { descendants: number }) => b.descendants - a.descendants
-		);
-		bestStories = bestStories.sort(
-			(a: { descendants: number }, b: { descendants: number }) => b.descendants - a.descendants
-		);
-		newStories = newStories.sort(
-			(a: { descendants: number }, b: { descendants: number }) => b.descendants - a.descendants
-		);
+		[topStories, bestStories, newStories].forEach((stories) => {
+			stories.sort(
+				(a: { descendants: number }, b: { descendants: number }) => b.descendants - a.descendants
+			);
+		});
 
 		sort = 'comments';
 	};
@@ -79,9 +73,9 @@
 			return;
 		}
 
-		topStories = topStories.sort((a: { time: number }, b: { time: number }) => b.time - a.time);
-		bestStories = bestStories.sort((a: { time: number }, b: { time: number }) => b.time - a.time);
-		newStories = newStories.sort((a: { time: number }, b: { time: number }) => b.time - a.time);
+		[topStories, bestStories, newStories].forEach((stories) => {
+			stories.sort((a: { time: number }, b: { time: number }) => b.time - a.time);
+		});
 
 		sort = 'date';
 	};

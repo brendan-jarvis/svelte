@@ -1,6 +1,3 @@
-<script lang="ts">
-</script>
-
 <svelte:head>
 	<title>Svelte by Brendan Jarvis</title>
 	<meta name="description" content="A website built using Svelte by Brendan Jarvis" />
@@ -8,6 +5,7 @@
 
 <div class="content">
 	<h1>Welcome</h1>
+	<img src="profile.jpg" alt="Brendan Jarvis at graduation" height={144} width={144} />
 	<p>Welcome, my name is Brendan Jarvis. I am using this website to learn Svelte!</p>
 	<h2>Projects</h2>
 	<p>
@@ -34,5 +32,11 @@
 
 	h1 {
 		text-align: center;
+	}
+
+	img {
+		display: block;
+		margin: 0 auto;
+		border-radius: 50%;
 	}
 </style>

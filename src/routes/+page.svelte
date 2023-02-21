@@ -1,9 +1,4 @@
 <script lang="ts">
-	import Clicker from '../lib/components/clicker.svelte';
-
-	let name = 'world';
-	const placekitten = { src: 'https://placekitten.com/500/500', alt: 'A cute kitten' };
-	const html = '<p>Some HTML. We can use this feature to expose our website to XSS attacks.</p>';
 </script>
 
 <svelte:head>
@@ -12,14 +7,32 @@
 </svelte:head>
 
 <div class="content">
-	<h1>Hello {name.toUpperCase()}!</h1>
-
-	<label for="name">Change name: </label>
-	<input type="text" bind:value={name} />
-
-	{@html html}
-
-	<img src={placekitten.src} alt={placekitten.alt} />
-
-	<Clicker />
+	<h1>Welcome</h1>
+	<p>Welcome, my name is Brendan Jarvis. I am using this website to learn Svelte!</p>
+	<h2>Projects</h2>
+	<p>
+		On this website I have built a <a href="/hackernews">HackerNews news reader</a> using the HackerNews
+		API. Consuming this external API is hampered by a N+1 query problem, so it takes a while to load.
+	</p>
+	<p>
+		I have a more information on my projects and a blog currently running using Next.js over at: <a
+			href="https://nextjs-brendan-jarvis.vercel.app">nextjs-brendan-jarvis.vercel.app</a
+		>
+	</p>
+	<h3>Contact</h3>
+	<p>
+		You can contact me on{' '}
+		<a href="https://twitter.com/brendanjjarvis">Twitter</a>.
+	</p>
 </div>
+
+<style>
+	.content {
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	h1 {
+		text-align: center;
+	}
+</style>

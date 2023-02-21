@@ -11,8 +11,6 @@ export const load = (async ({ fetch, params }) => {
 		throw error(storyRes.status, 'Something went wrong fetching a story from Hacker News');
 	}
 
-	console.log(storyData.kids);
-
 	const commentDataPromises = storyData.kids.map(async (comment: string) => {
 		const commentRes = await fetch(`https://hacker-news.firebaseio.com/v0/item/${comment}.json`);
 

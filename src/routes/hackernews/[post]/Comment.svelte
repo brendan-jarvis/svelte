@@ -23,8 +23,6 @@
 			throw new Error(`Something went wrong fetching comment: ${id}`);
 		}
 
-		const commentData = await Promise.resolve(data);
-
 		return data;
 	};
 </script>

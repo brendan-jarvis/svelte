@@ -10,8 +10,7 @@
 
 	let routes: Route[] = [
 		{ href: '/', text: 'Home', preload: 'hover' },
-		{ href: '/hackernews', text: 'Hackernews', preload: 'off' },
-		{ href: '/about', text: 'About', preload: 'hover' }
+		{ href: '/hackernews', text: 'Hackernews', preload: 'off' }
 	];
 </script>
 

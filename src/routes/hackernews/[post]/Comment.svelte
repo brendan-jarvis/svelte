@@ -27,32 +27,34 @@
 	};
 </script>
 
-<div class="comment">
-	<div class="comment-header">
-		<a href={comment.by} class="post-title" target="”_blank”">{comment.by}</a>
-		<span class="comment-time">{formatDate(comment.time)}</span>
-	</div>
-	<div class="comment-body">
-		<div class="comment-text">
-			{#if comment.text}
-				{@html comment.text}
+{#if comment.by != undefined}
+	<div class="comment">
+		<div class="comment-header">
+			<a href={comment.by} class="post-title" target="”_blank”">{comment.by}</a>
+			<span class="comment-time">{formatDate(comment.time)}</span>
+		</div>
+		<div class="comment-body">
+			<div class="comment-text">
+				{#if comment.text}
+					{@html comment.text}
+				{/if}
+			</div>
+			{#if comment.kids}
+				<div class="comment-children">
+					{#each comment.kids as kid}
+						{#await fetchComment(kid)}
+							<p>Loading comment...</p>
+						{:then comment}
+							<svelte:self {comment} />
+						{:catch error}
+							<p style="color: red">{error.message}</p>
+						{/await}
+					{/each}
+				</div>
 			{/if}
 		</div>
-		{#if comment.kids}
-			<div class="comment-children">
-				{#each comment.kids as kid}
-					{#await fetchComment(kid)}
-						<p>Loading comment...</p>
-					{:then comment}
-						<svelte:self {comment} />
-					{:catch error}
-						<p style="color: red">{error.message}</p>
-					{/await}
-				{/each}
-			</div>
-		{/if}
 	</div>
-</div>
+{/if}
 
 <style>
 	.comment-children {

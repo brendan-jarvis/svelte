@@ -15,6 +15,7 @@
 	import { formatDate } from '../../../lib/utils';
 
 	let commentData: Comment;
+	let display = 'block';
 
 	const fetchComment = async (id: number) => {
 		const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
@@ -25,6 +26,15 @@
 		}
 
 		return data;
+	};
+
+	const toggleComment = () => {
+		// hide the parent div
+		if (display === 'block') {
+			display = 'none';
+		} else {
+			display = 'block';
+		}
 	};
 </script>
 
@@ -39,26 +49,34 @@
 				>{comment.by}
 			</a>
 			<span class="comment-time">{formatDate(comment.time)}</span>
+			<button on:click={toggleComment}>
+				{#if display === 'block'}
+					[-]
+				{:else}
+					[+]
+				{/if}
+			</button>
 		</span>
-
-		<div class="comment-text">
-			{#if comment.text}
-				{@html comment.text}
+		<div class="comment-body" style:display>
+			<div class="comment-text">
+				{#if comment.text}
+					{@html comment.text}
+				{/if}
+			</div>
+			{#if comment.kids}
+				<div class="comment-children">
+					{#each comment.kids as kid}
+						{#await fetchComment(kid)}
+							<p>Loading comment...</p>
+						{:then comment}
+							<svelte:self {comment} />
+						{:catch error}
+							<p style="color: red">{error.message}</p>
+						{/await}
+					{/each}
+				</div>
 			{/if}
 		</div>
-		{#if comment.kids}
-			<div class="comment-children">
-				{#each comment.kids as kid}
-					{#await fetchComment(kid)}
-						<p>Loading comment...</p>
-					{:then comment}
-						<svelte:self {comment} />
-					{:catch error}
-						<p style="color: red">{error.message}</p>
-					{/await}
-				{/each}
-			</div>
-		{/if}
 	</div>
 {/if}
 
@@ -85,5 +103,14 @@
 		max-width: 700px;
 		background-color: var(--polar-night-2);
 		padding: 0.5rem;
+	}
+
+	button {
+		background-color: var(--aurora-3);
+		color: var(--polar-night-2);
+		border: none;
+		border-radius: 0.25rem;
+		padding: 0.25rem;
+		font-size: smaller;
 	}
 </style>

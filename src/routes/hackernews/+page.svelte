@@ -29,54 +29,38 @@
 			topStories = topStories.reverse();
 			bestStories = bestStories.reverse();
 			newStories = newStories.reverse();
-
 			sort = sort === 'points' ? 'points-reverse' : 'points';
-
 			return;
 		}
-
-		[topStories, bestStories, newStories].forEach((stories) => {
-			stories.sort((a: { score: number }, b: { score: number }) => b.score - a.score);
-		});
-
+		topStories = topStories.sort((a, b) => b.score - a.score);
+		bestStories = bestStories.sort((a, b) => b.score - a.score);
+		newStories = newStories.sort((a, b) => b.score - a.score);
 		sort = 'points';
 	};
-
 	const commentsSort = () => {
 		if (sort === 'comments' || sort === 'comments-reverse') {
 			topStories = topStories.reverse();
 			bestStories = bestStories.reverse();
 			newStories = newStories.reverse();
-
 			sort = sort === 'comments' ? 'comments-reverse' : 'comments';
-
 			return;
 		}
-
-		[topStories, bestStories, newStories].forEach((stories) => {
-			stories.sort(
-				(a: { descendants: number }, b: { descendants: number }) => b.descendants - a.descendants
-			);
-		});
-
+		topStories = topStories.sort((a, b) => b.descendants - a.descendants);
+		bestStories = bestStories.sort((a, b) => b.descendants - a.descendants);
+		newStories = newStories.sort((a, b) => b.descendants - a.descendants);
 		sort = 'comments';
 	};
-
 	const dateSort = () => {
 		if (sort === 'date' || sort === 'date-reverse') {
 			topStories = topStories.reverse();
 			bestStories = bestStories.reverse();
 			newStories = newStories.reverse();
-
 			sort = sort === 'date' ? 'date-reverse' : 'date';
-
 			return;
 		}
-
-		[topStories, bestStories, newStories].forEach((stories) => {
-			stories.sort((a: { time: number }, b: { time: number }) => b.time - a.time);
-		});
-
+		topStories = topStories.sort((a, b) => b.time - a.time);
+		bestStories = bestStories.sort((a, b) => b.time - a.time);
+		newStories = newStories.sort((a, b) => b.time - a.time);
 		sort = 'date';
 	};
 </script>
@@ -115,7 +99,13 @@
 		>
 			<h2>{post.title}</h2>
 			{#each post.data as story (story)}
-				<Story {story} />
+				{#await story}
+					<div class="post">Loading...</div>
+				{:then story}
+					<Story {story} />
+				{:catch error}
+					<div class="post">Error {error}</div>
+				{/await}
 			{/each}
 		</div>
 	{/each}

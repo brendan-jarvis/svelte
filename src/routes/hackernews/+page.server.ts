@@ -25,15 +25,9 @@ export const load = (async ({ fetch }) => {
 		return storyData;
 	};
 
-	const [topStories, bestStories, newStories] = await Promise.all([
-		fetchStories('topstories'),
-		fetchStories('beststories'),
-		fetchStories('newstories')
-	]);
-
 	return {
-		topStories,
-		bestStories,
-		newStories
+		topStories: fetchStories('topstories'),
+		bestStories: fetchStories('beststories'),
+		newStories: fetchStories('newstories')
 	};
 }) satisfies PageServerLoad;

@@ -17,8 +17,8 @@
 			href={`https://news.ycombinator.com/from?site=${
 				storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
 			}`}
-			target="”_blank”"
-			>{storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
+			target="_blank"
+			rel="noreferrer">{storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
 		>)</span
 	>
 </div>
@@ -69,10 +69,5 @@
 		grid-template-columns: 1fr;
 		grid-gap: 1rem;
 		padding: 0.5rem;
-	}
-
-	.comments:nth-child(2) {
-		/* TODO: get this working */
-		background-color: var(--polar-night-2);
 	}
 </style>

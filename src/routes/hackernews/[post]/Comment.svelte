@@ -9,6 +9,7 @@
 		text: string;
 		time: number;
 		type: string;
+		dead?: boolean;
 	};
 
 	import { formatDate } from '../../../lib/utils';
@@ -27,10 +28,16 @@
 	};
 </script>
 
-{#if comment.by != undefined}
+{#if comment.by != undefined && !comment.dead}
 	<div class="comment">
 		<div class="comment-header">
-			<a href={comment.by} class="post-title" target="”_blank”">{comment.by}</a>
+			<a
+				href={`https://news.ycombinator.com/user?id=${comment.by}`}
+				class="post-title"
+				target="_blank"
+				rel="noreferrer"
+				>{comment.by}
+			</a>
 			<span class="comment-time">{formatDate(comment.time)}</span>
 		</div>
 		<div class="comment-body">
@@ -57,11 +64,18 @@
 {/if}
 
 <style>
+	.comment {
+		gap: 0.5rem;
+	}
 	.comment-children {
 		margin-left: 1rem;
+		padding-left: 0.5rem;
+		border-left: 1px solid var(--aurora-5);
 	}
 
 	.comment-text {
-		max-width: 600px;
+		max-width: 700px;
+		background-color: var(--polar-night-2);
+		padding: 0.5rem;
 	}
 </style>

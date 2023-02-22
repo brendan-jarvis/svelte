@@ -14,7 +14,6 @@
 
 	import { formatDate } from '../../../lib/utils';
 
-	let commentData: Comment;
 	let display = 'block';
 
 	const fetchComment = async (id: number) => {

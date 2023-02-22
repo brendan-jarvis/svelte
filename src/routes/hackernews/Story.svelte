@@ -38,9 +38,7 @@
 		>
 		• {story.score}
 		points •
-		<a href={`https://news.ycombinator.com/item?id=${story.id}`} target="”_blank”"
-			>{story.descendants || '0'} comments</a
-		>
+		<a href={`/hackernews/${story.id}`} target="”_blank”">{story.descendants || '0'} comments</a>
 		• {formatDate(story.time)}
 	</div>
 </div>

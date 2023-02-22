@@ -58,4 +58,8 @@
 	.comment-children {
 		margin-left: 1rem;
 	}
+
+	.comment-text {
+		max-width: 600px;
+	}
 </style>

@@ -9,7 +9,7 @@
 
 	let routes: Route[] = [
 		{ href: '/', text: 'Home', preload: 'hover' },
-		{ href: '/hackernews', text: 'Hackernews', preload: 'off' }
+		{ href: '/hackernews', text: 'Hackernews', preload: 'hover' }
 	];
 
 	let showSpinner = false;

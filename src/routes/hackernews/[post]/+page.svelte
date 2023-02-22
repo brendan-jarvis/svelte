@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { page } from '$app/stores';
+	import { fade } from 'svelte/transition';
 	import Comment from './Comment.svelte';
 
 	import { formatDate } from '../../../lib/utils';
@@ -15,33 +16,34 @@
 	<meta name="description" content="Hackernews viewer built using Svelte by Brendan Jarvis" />
 </svelte:head>
 
-<div class="story-header">
-	<h2>{storyData.title}</h2>
-	<span class="story-url"
-		>(<a
-			href={`https://news.ycombinator.com/from?site=${
-				storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
-			}`}
-			target="_blank"
-			rel="noreferrer">{storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
-		>)</span
-	>
-</div>
-<div class="story-info">
-	<p>
-		{storyData.score} points by {storyData.by}
-		{formatDate(storyData.time)} | {storyData.descendants} comments
-	</p>
-</div>
+<div class="container" in:fade={{ delay: 250 }}>
+	<div class="story-header">
+		<h2>{storyData.title}</h2>
+		<span class="story-url"
+			>(<a
+				href={`https://news.ycombinator.com/from?site=${
+					storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
+				}`}
+				target="_blank"
+				rel="noreferrer"
+				>{storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
+			>)</span
+		>
+	</div>
+	<div class="story-info">
+		<p>
+			{storyData.score} points by {storyData.by}
+			{formatDate(storyData.time)} | {storyData.descendants} comments
+		</p>
+	</div>
 
-<ul>
-	<h3>Comments</h3>
 	<div class="comments">
+		<h3>Comments</h3>
 		{#each commentData as comment}
 			<Comment {comment} />
 		{/each}
 	</div>
-</ul>
+</div>
 
 <style>
 	@media (max-width: 950px) {
@@ -54,6 +56,7 @@
 			width: 100%;
 		} */
 	}
+
 	.story-header {
 		display: flex;
 		justify-content: flex-start;

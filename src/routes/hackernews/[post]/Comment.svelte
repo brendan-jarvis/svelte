@@ -30,7 +30,7 @@
 
 {#if comment.by != undefined && !comment.dead}
 	<div class="comment">
-		<div class="comment-header">
+		<span class="comment-header">
 			<a
 				href={`https://news.ycombinator.com/user?id=${comment.by}`}
 				class="post-title"
@@ -39,34 +39,42 @@
 				>{comment.by}
 			</a>
 			<span class="comment-time">{formatDate(comment.time)}</span>
-		</div>
-		<div class="comment-body">
-			<div class="comment-text">
-				{#if comment.text}
-					{@html comment.text}
-				{/if}
-			</div>
-			{#if comment.kids}
-				<div class="comment-children">
-					{#each comment.kids as kid}
-						{#await fetchComment(kid)}
-							<p>Loading comment...</p>
-						{:then comment}
-							<svelte:self {comment} />
-						{:catch error}
-							<p style="color: red">{error.message}</p>
-						{/await}
-					{/each}
-				</div>
+		</span>
+
+		<div class="comment-text">
+			{#if comment.text}
+				{@html comment.text}
 			{/if}
 		</div>
+		{#if comment.kids}
+			<div class="comment-children">
+				{#each comment.kids as kid}
+					{#await fetchComment(kid)}
+						<p>Loading comment...</p>
+					{:then comment}
+						<svelte:self {comment} />
+					{:catch error}
+						<p style="color: red">{error.message}</p>
+					{/await}
+				{/each}
+			</div>
+		{/if}
 	</div>
 {/if}
 
 <style>
 	.comment {
-		gap: 0.5rem;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 1rem;
+		padding: 0.5rem;
 	}
+
+	.comment-header {
+		color: var(--aurora-2);
+		font-size: small;
+	}
+
 	.comment-children {
 		margin-left: 1rem;
 		padding-left: 0.5rem;

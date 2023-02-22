@@ -10,6 +10,11 @@
 	const { post } = $page.params;
 </script>
 
+<svelte:head>
+	<title>{storyData.title} Hackernews Viewer - by Brendan Jarvis</title>
+	<meta name="description" content="Hackernews viewer built using Svelte by Brendan Jarvis" />
+</svelte:head>
+
 <div class="story-header">
 	<h2>{storyData.title}</h2>
 	<span class="story-url"

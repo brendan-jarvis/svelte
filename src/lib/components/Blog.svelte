@@ -1,15 +1,9 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import type { AuthSession } from '@supabase/supabase-js';
 	import { supabase } from '../supabaseClient';
 
-	let posts = {};
+	let blogPosts = {};
 
 	let loading = false;
-
-	onMount(() => {
-		getBlogPosts();
-	});
 
 	const getBlogPosts = async () => {
 		try {
@@ -18,6 +12,8 @@
 				.from('posts')
 				.select('*')
 				.order('created_at', { ascending: false });
+
+			blogPosts = posts;
 
 			if (error && status !== 406) throw error;
 
@@ -31,6 +27,8 @@
 			loading = false;
 		}
 	};
+
+	getBlogPosts();
 </script>
 
 <h2>Blog</h2>
@@ -38,11 +36,16 @@
 {#if loading}
 	<p>Loading...</p>
 {:else}
-	{#each Object.entries(posts) as post}
-		{console.log(post)}
+	{#each blogPosts as post (post)}
 		<div>
 			<h3>{post.title}</h3>
-			<p>{post.content}</p>
+			<p>
+				{new Intl.DateTimeFormat('en-NZ', {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric'
+				}).format(new Date(post.created_at))}
+			</p>
 		</div>
 	{/each}
 {/if}

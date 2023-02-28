@@ -15,6 +15,7 @@
 			let { data: posts, error } = await supabase
 				.from('posts')
 				.select('*')
+				.limit(10)
 				.order('created_at', { ascending: false });
 
 			if (error) throw error;

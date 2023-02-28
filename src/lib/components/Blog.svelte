@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { supabase } from '$lib/supabaseClient';
 
-	let blogPosts: Array | null;
+	export const prerender = true;
+
+	type BlogPosts = { [x: string]: any }[] | null;
+
+	let blogPosts: BlogPosts;
 
 	let loading = false;
 
@@ -13,15 +17,12 @@
 				.select('*')
 				.order('created_at', { ascending: false });
 
+			if (error) throw error;
+
 			blogPosts = posts;
-
-			if (error && status !== 406) throw error;
-
-			// console.log(posts);
-			// console.log(Object.keys(posts));
 		} catch (error) {
-			if (error instanceof Error) {
-				error = error.message;
+			if (error) {
+				console.log('Error loading blog posts: ', error);
 			}
 		} finally {
 			loading = false;
@@ -35,6 +36,8 @@
 
 {#if loading}
 	<p>Loading...</p>
+{:else if !blogPosts}
+	<p>No blog posts yet</p>
 {:else}
 	{#each blogPosts as post (post)}
 		<div>

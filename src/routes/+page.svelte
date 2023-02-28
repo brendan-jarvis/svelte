@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import Blog from '$lib/components/Blog.svelte';
+
+	export const prerender = true;
 </script>
 
 <svelte:head>

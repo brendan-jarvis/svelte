@@ -1,3 +1,8 @@
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import Blog from '../lib/components/Blog.svelte';
+</script>
+
 <svelte:head>
 	<title>Svelte by Brendan Jarvis</title>
 	<meta name="description" content="A website built using Svelte by Brendan Jarvis" />
@@ -22,6 +27,7 @@
 		You can contact me on{' '}
 		<a href="https://twitter.com/brendanjjarvis">Twitter</a>.
 	</p>
+	<Blog />
 </div>
 
 <style>

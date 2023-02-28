@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import type { AuthSession } from '@supabase/supabase-js';
 	import { supabase } from '../supabaseClient';
+	import md5 from 'md5';
 
 	export let session: AuthSession;
 
@@ -68,6 +69,11 @@
 		}
 	};
 </script>
+
+<img
+	src={avatarUrl ? avatarUrl : `https://www.gravatar.com/avatar/${md5(session.user.email)}`}
+	alt={`${username} avatar`}
+/>
 
 <form on:submit|preventDefault={updateProfile} class="form-widget">
 	<label for="email">Email</label>

@@ -12,7 +12,7 @@
 		dead?: boolean;
 	};
 
-	import { formatDate } from '../../../lib/utils';
+	import { formatDate } from '$lib/utils';
 
 	let display = 'block';
 

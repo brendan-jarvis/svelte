@@ -4,7 +4,7 @@
 	import { fade } from 'svelte/transition';
 	import Comment from './Comment.svelte';
 
-	import { formatDate } from '../../../lib/utils';
+	import { formatDate } from '$lib/utils';
 
 	export let data: PageData;
 	const { storyData, commentData } = data;

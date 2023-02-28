@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { supabase } from '../supabaseClient';
+	import { supabase } from '$lib/supabaseClient';
 
-	let blogPosts = {};
+	let blogPosts: Array | null;
 
 	let loading = false;
 

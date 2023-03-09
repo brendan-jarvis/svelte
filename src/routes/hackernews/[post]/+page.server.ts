@@ -1,7 +1,8 @@
 import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
-export const load = (async ({ fetch, params }) => {
+export const load = (async ({ fetch, params, parent }) => {
+	const { session } = await parent();
 	const storyRes = await fetch(
 		`https://hacker-news.firebaseio.com/v0/item/${params.post}.json?print=pretty`
 	);
@@ -27,6 +28,7 @@ export const load = (async ({ fetch, params }) => {
 
 	return {
 		storyData,
-		commentData: await Promise.all(commentDataPromises)
+		commentData: await Promise.all(commentDataPromises),
+		session
 	};
 }) satisfies PageServerLoad;

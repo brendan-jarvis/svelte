@@ -1,55 +1,64 @@
 <script lang="ts">
 	import { supabase } from '$lib/supabaseClient';
 
-	export const prerender = true;
+	interface BlogPost {
+		id: string | number;
+		author: string;
+		title: string;
+		content: string;
+		created_at: string | number;
+		updated_at: string | number;
+	}
 
-	type BlogPosts = { [x: string]: any }[] | null;
+	let loadingBlogPosts = false;
+	let blogPosts: BlogPost[];
 
-	let blogPosts: BlogPosts;
-
-	let loading = false;
-
-	const getBlogPosts = async () => {
+	const fetchBlogPosts = async () => {
 		try {
-			loading = true;
-			let { data: posts, error } = await supabase
+			loadingBlogPosts = true;
+			const { data, error } = await supabase
 				.from('posts')
 				.select('*')
 				.limit(10)
-				.order('created_at', { ascending: false });
+				.order('created_at', { ascending: false })
+				.then(({ data, error }) => ({ data, error }));
 
-			if (error) throw error;
-
-			blogPosts = posts;
-		} catch (error) {
 			if (error) {
-				console.log('Error loading blog posts: ', error);
+				throw error;
 			}
+
+			blogPosts = data;
+		} catch (error) {
+			console.log('Error loading blog posts: ', error);
 		} finally {
-			loading = false;
+			loadingBlogPosts = false;
 		}
 	};
 
-	getBlogPosts();
+	fetchBlogPosts();
 </script>
 
 <h2>Blog</h2>
 
-{#if loading}
+{#if loadingBlogPosts}
 	<p>Loading...</p>
 {:else if !blogPosts}
 	<p>No blog posts yet</p>
 {:else}
-	{#each blogPosts as post (post)}
+	{#each blogPosts as post (post.id)}
 		<div>
-			<h3>{post.title}</h3>
-			<p>
-				{new Intl.DateTimeFormat('en-NZ', {
-					year: 'numeric',
-					month: 'long',
-					day: 'numeric'
-				}).format(new Date(post.created_at))}
-			</p>
+			<a href="/blog/{post.id}" class="blog-post-link">
+				<h3>{post.title}</h3>
+			</a>
+			{#if post.created_at}
+				<p>
+					{new Intl.DateTimeFormat('en-NZ', {
+						year: 'numeric',
+						month: 'long',
+						day: 'numeric'
+					}).format(new Date(post.created_at))}
+				</p>
+			{/if}
 		</div>
 	{/each}
 {/if}

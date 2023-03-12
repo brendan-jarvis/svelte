@@ -1,5 +1,9 @@
 <script lang="ts">
-	import Blog from '$lib/components/Blog.svelte';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+
+	const { blogPosts } = data;
 </script>
 
 <svelte:head>
@@ -26,7 +30,28 @@
 		You can contact me on{' '}
 		<a href="https://twitter.com/brendanjjarvis">Twitter</a>.
 	</p>
-	<Blog />
+
+	<h2>Blog</h2>
+	{#if !blogPosts}
+		<p>No blog posts yet</p>
+	{:else}
+		{#each blogPosts as post (post.id)}
+			<div>
+				<a href="/blog/{post.id}" class="blog-post-link">
+					<h3>{post.title}</h3>
+				</a>
+				{#if post.created_at}
+					<p>
+						{new Intl.DateTimeFormat('en-NZ', {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric'
+						}).format(new Date(post.created_at))}
+					</p>
+				{/if}
+			</div>
+		{/each}
+	{/if}
 </div>
 
 <style>

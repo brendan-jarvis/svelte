@@ -2,6 +2,7 @@ import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
 export const load = (async ({ fetch }) => {
+	// TODO: Learn how to handle Supabase session in SvelteKit
 	const fetchStories = async (url: string) => {
 		const res = await fetch(`https://hacker-news.firebaseio.com/v0/${url}.json?print=pretty`);
 		const storyIds = await res.json();
@@ -28,6 +29,7 @@ export const load = (async ({ fetch }) => {
 	return {
 		topStories: fetchStories('topstories'),
 		bestStories: fetchStories('beststories'),
-		newStories: fetchStories('newstories')
+		newStories: fetchStories('newstories'),
+		session: null
 	};
 }) satisfies PageServerLoad;

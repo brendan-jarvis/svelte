@@ -1,7 +1,39 @@
 <script lang="ts">
-	export const prerender = true;
+	import { supabase } from '$lib/supabaseClient';
 
-	import { blogStore, fetchBlogPosts, loadingBlogPosts } from '$lib/stores';
+	interface BlogPost {
+		id: string | number;
+		author: string;
+		title: string;
+		content: string;
+		created_at: string | number;
+		updated_at: string | number;
+	}
+
+	let loadingBlogPosts = false;
+	let blogPosts: BlogPost[];
+
+	const fetchBlogPosts = async () => {
+		try {
+			loadingBlogPosts = true;
+			const { data, error } = await supabase
+				.from('posts')
+				.select('*')
+				.limit(10)
+				.order('created_at', { ascending: false })
+				.then(({ data, error }) => ({ data, error }));
+
+			if (error) {
+				throw error;
+			}
+
+			blogPosts = data;
+		} catch (error) {
+			console.log('Error loading blog posts: ', error);
+		} finally {
+			loadingBlogPosts = false;
+		}
+	};
 
 	fetchBlogPosts();
 </script>
@@ -10,10 +42,10 @@
 
 {#if loadingBlogPosts}
 	<p>Loading...</p>
-{:else if !$blogStore}
+{:else if !blogPosts}
 	<p>No blog posts yet</p>
 {:else}
-	{#each $blogStore as post (post.id)}
+	{#each blogPosts as post (post.id)}
 		<div>
 			<a href="/blog/{post.id}" class="blog-post-link">
 				<h3>{post.title}</h3>

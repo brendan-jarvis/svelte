@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
-	import { blogStore, fetchBlogPosts } from '$lib/stores';
+	import { blogStore } from '$lib/stores';
 	import { page } from '$app/stores';
 	import { marked } from 'marked';
 

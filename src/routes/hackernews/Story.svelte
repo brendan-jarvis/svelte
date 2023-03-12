@@ -13,7 +13,7 @@
 		url: string;
 	};
 
-	import { formatDate } from '../../lib/utils';
+	import { formatDate } from '$lib/utils';
 </script>
 
 <div class="post">

@@ -162,3 +162,23 @@ ul {
 ol {
   padding: 0 0 0 2rem;
 }
+
+/* Comment styling */
+.comment-text pre {
+  max-width: 100%;
+  background-color: var(--polar-night-3);
+  color: var(--snow-storm-2);
+  overflow-x: scroll;
+}
+
+@media (max-width: 950px) {
+  .comment-text {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 950px) {
+  .comment-text {
+    max-width: 700px;
+  }   
+}

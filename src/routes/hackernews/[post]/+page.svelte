@@ -4,7 +4,7 @@
 	import { fade } from 'svelte/transition';
 	import Comment from './Comment.svelte';
 
-	import { formatDate } from '../../../lib/utils';
+	import { formatDate } from '$lib/utils';
 
 	export let data: PageData;
 	const { storyData, commentData } = data;
@@ -47,14 +47,14 @@
 
 <style>
 	@media (max-width: 950px) {
-		/* .comments {
-			width: 100%;
-		} */
+		.comments {
+			width: 300px;
+		}
 	}
 	@media (min-width: 950px) {
-		/* .comments {
+		.comments {
 			width: 100%;
-		} */
+		}
 	}
 
 	.story-header {

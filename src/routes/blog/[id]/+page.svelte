@@ -1,29 +1,16 @@
-<script lang="ts">
-	import { onDestroy } from 'svelte';
-	import { blogStore } from '$lib/stores';
-	import { page } from '$app/stores';
-	import { marked } from 'marked';
+<script lang='ts'>
+  export const prerender = true;
+  
+	export async function load({ params }) {
+		const res = await fetch(`/api/blog/${params.id}`);
+		const post = await res.json();
 
-	interface BlogPost {
-		id: string | number;
-		author: string;
-		title: string;
-		content: string;
-		created_at: string | number;
-		updated_at: string | number;
+		return { post };
 	}
+</script>
 
-	let blogPost: BlogPost;
-
-	const { id } = $page.params;
-
-	const unsubscribe = blogStore.subscribe((blogPosts) => {
-		blogPost = blogPosts.find<BlogPost>(
-			(post): BlogPost => Number(post.id) === Number(id)
-		) as BlogPost;
-	});
-
-	onDestroy(unsubscribe);
+<script>
+	export let post;
 </script>
 
 <h2>{blogPost.title}</h2>

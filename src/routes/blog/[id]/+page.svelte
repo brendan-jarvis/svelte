@@ -1,14 +1,24 @@
 <script lang="ts">
-	export const prerender = true;
+	import { marked } from 'marked';
 
-	export async function load({ params }) {
-		const res = await fetch(`/api/blog/${params.id}`);
-		const post = await res.json();
-		console.log(post);
-		return { post };
-	}
+	export let data: PageData;
+
+	const { blogPost } = data;
+
+	$: console.log(data);
 </script>
 
-<h2>{blogPost.title}</h2>
+<div class="content">
+	<h1>{blogPost.title}</h1>
 
-<p>{@html marked(blogPost.content)}</p>
+	{@html marked(blogPost.content)}
+</div>
+
+<style>
+	h1 {
+		text-align: center;
+	}
+	.content {
+		text-align: left;
+	}
+</style>

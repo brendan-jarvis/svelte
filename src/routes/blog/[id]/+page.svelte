@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
-	import { blogStore } from '$lib/stores';
+	import { blogStore, fetchBlogPosts } from '$lib/stores';
 	import { page } from '$app/stores';
+	import { marked } from 'marked';
 
 	interface BlogPost {
 		id: string | number;
@@ -23,10 +24,8 @@
 	});
 
 	onDestroy(unsubscribe);
-
-	$: console.log('Blog post is: ', blogPost);
 </script>
 
 <h2>{blogPost.title}</h2>
 
-<p>{@html blogPost.content}</p>
+<p>{@html marked(blogPost.content)}</p>

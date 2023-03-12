@@ -4,7 +4,7 @@
 	export async function load({ params }) {
 		const res = await fetch(`/api/blog/${params.id}`);
 		const post = await res.json();
-
+		console.log(post);
 		return { post };
 	}
 </script>

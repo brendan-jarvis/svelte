@@ -5,7 +5,11 @@ export const GET: RequestHandler = async (request) => {
 	let blogData;
 
 	try {
-		const { data, error } = await supabase.from('posts').select('*').eq('id', request.params.id);
+		const { data, error } = await supabase
+			.from('posts')
+			.select('*')
+			.eq('id', request.params.id)
+			.single();
 
 		if (error) {
 			throw error;

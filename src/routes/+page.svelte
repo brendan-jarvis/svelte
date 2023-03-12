@@ -1,7 +1,5 @@
 <script lang="ts">
 	import Blog from '$lib/components/Blog.svelte';
-
-	export const prerender = true;
 </script>
 
 <svelte:head>

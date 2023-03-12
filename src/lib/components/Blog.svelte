@@ -40,14 +40,13 @@
 	};
 
 	fetchBlogPosts();
-	$: console.log($blogStore);
 </script>
 
 <h2>Blog</h2>
 
 {#if loading}
 	<p>Loading...</p>
-{:else if $blogStore.length === 0}
+{:else if !$blogStore}
 	<p>No blog posts yet</p>
 {:else}
 	{#each $blogStore as post (post.id)}

@@ -18,7 +18,7 @@
 
 <div class="container" in:fade={{ delay: 250 }}>
 	<div class="story-header">
-		<h2>{storyData.title}</h2>
+		<h2><a href={storyData.url}>{storyData.title}</a></h2>
 		<span class="story-url"
 			>(<a
 				href={`https://news.ycombinator.com/from?site=${
@@ -55,6 +55,10 @@
 		.comments {
 			width: 100%;
 		}
+	}
+
+	h2 a {
+		color: var(--aurora-2);
 	}
 
 	.story-header {

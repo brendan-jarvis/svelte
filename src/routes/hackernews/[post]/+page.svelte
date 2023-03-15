@@ -17,16 +17,18 @@
 <div class="container" in:fade={{ delay: 250 }}>
 	<div class="story-header">
 		<h2><a href={storyData.url}>{storyData.title}</a></h2>
-		<span class="story-url"
-			>(<a
-				href={`https://news.ycombinator.com/from?site=${
-					storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
-				}`}
-				target="_blank"
-				rel="noreferrer"
-				>{storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
-			>)</span
-		>
+		{#if storyData.url}
+			<span class="story-url"
+				>(<a
+					href={`https://news.ycombinator.com/from?site=${
+						storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
+					}`}
+					target="_blank"
+					rel="noreferrer"
+					>{storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
+				>)</span
+			>
+		{/if}
 	</div>
 	<div class="story-info">
 		<p>

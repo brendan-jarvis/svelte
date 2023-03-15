@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { page } from '$app/stores';
 	import { fade } from 'svelte/transition';
 	import Comment from './Comment.svelte';
 
@@ -8,7 +7,6 @@
 
 	export let data: PageData;
 	const { storyData, commentData } = data;
-	const { post } = $page.params;
 </script>
 
 <svelte:head>

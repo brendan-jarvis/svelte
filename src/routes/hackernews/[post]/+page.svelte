@@ -32,7 +32,8 @@
 	</div>
 	<div class="story-info">
 		<p>
-			{storyData.score} points by {storyData.by}
+			{storyData.score} points by
+			<a href={`https://news.ycombinator.com/user?id=${storyData.by}`}>{storyData.by}</a>
 			{formatDate(storyData.time)} | {storyData.descendants} comments
 		</p>
 	</div>

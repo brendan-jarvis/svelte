@@ -3,7 +3,7 @@
 
 	export let data: PageData;
 
-	const { blogPosts } = data;
+	const { blogPosts, projects } = data;
 </script>
 
 <svelte:head>
@@ -37,7 +37,7 @@
 	{:else}
 		{#each blogPosts as post (post.id)}
 			<div>
-				<a href="/blog/{post.id}" class="blog-post-link">
+				<a href="/blog/{post.id}" class="blog-link">
 					<h3>{post.title}</h3>
 				</a>
 				{#if post.created_at}
@@ -49,6 +49,35 @@
 						}).format(new Date(post.created_at))}
 					</p>
 				{/if}
+			</div>
+		{/each}
+	{/if}
+
+	<h2>Projects</h2>
+	{#if !projects}
+		<p>
+			Whoops, project data failed to load properly. You could check out <a
+				href="https://github.com/brendan-jarvis/"
+			>
+				my profile on GitHub</a
+			> instead.
+		</p>
+	{:else}
+		{#each projects as project (project.id)}
+			<div>
+				<a href={project.url} class="blog-link">
+					<h3>{project.title}</h3>
+				</a>
+				{#if project.created_at}
+					<p>
+						{new Intl.DateTimeFormat('en-NZ', {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric'
+						}).format(new Date(project.created_at))}
+					</p>
+				{/if}
+				<p>{project.content}</p>
 			</div>
 		{/each}
 	{/if}

@@ -47,7 +47,7 @@
 {:else}
 	{#each blogPosts as post (post.id)}
 		<div>
-			<a href="/blog/{post.id}" class="blog-post-link">
+			<a href="/blog/{post.id}" class="blog-link">
 				<h3>{post.title}</h3>
 			</a>
 			{#if post.created_at}

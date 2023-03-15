@@ -20,11 +20,20 @@
 		href: string;
 		text: string;
 		preload: true | '' | 'hover' | 'off' | null | undefined;
+		target?: string;
+		rel?: string;
 	};
 
 	let routes: Route[] = [
 		{ href: '/', text: 'Home', preload: 'hover' },
-		{ href: '/hackernews', text: 'Hackernews', preload: 'hover' }
+		{ href: '/hackernews', text: 'Hackernews', preload: 'hover' },
+		{
+			href: 'https://github.com/brendan-jarvis',
+			text: 'GitHub',
+			preload: 'hover',
+			target: '_blank',
+			rel: 'noreferrer'
+		}
 	];
 
 	let showSpinner = false;
@@ -46,6 +55,8 @@
 	{#each routes as route}
 		<a
 			href={route.href}
+			target={route.target || null}
+			rel={route.rel || null}
 			data-sveltekit-preload-data={route.preload}
 			class:active={$page.url.pathname === route.href}>{route.text}</a
 		>
@@ -72,7 +83,13 @@
 	{/if}
 </main>
 
-<footer>Made by Brendan Jarvis while learning Svelte in 2023</footer>
+<footer>
+	<p>Made by Brendan Jarvis while learning Svelte in 2023.</p>
+	<p>
+		You can contact me on{' '}
+		<a href="https://twitter.com/brendanjjarvis">Twitter</a>.
+	</p>
+</footer>
 
 <style>
 	nav {

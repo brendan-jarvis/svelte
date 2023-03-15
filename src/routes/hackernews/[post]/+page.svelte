@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { page } from '$app/stores';
 	import { fade } from 'svelte/transition';
 	import Comment from './Comment.svelte';
 
@@ -8,7 +7,6 @@
 
 	export let data: PageData;
 	const { storyData, commentData } = data;
-	const { post } = $page.params;
 </script>
 
 <svelte:head>
@@ -18,21 +16,24 @@
 
 <div class="container" in:fade={{ delay: 250 }}>
 	<div class="story-header">
-		<h2>{storyData.title}</h2>
-		<span class="story-url"
-			>(<a
-				href={`https://news.ycombinator.com/from?site=${
-					storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
-				}`}
-				target="_blank"
-				rel="noreferrer"
-				>{storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
-			>)</span
-		>
+		<h2><a href={storyData.url}>{storyData.title}</a></h2>
+		{#if storyData.url}
+			<span class="story-url"
+				>(<a
+					href={`https://news.ycombinator.com/from?site=${
+						storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
+					}`}
+					target="_blank"
+					rel="noreferrer"
+					>{storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
+				>)</span
+			>
+		{/if}
 	</div>
 	<div class="story-info">
 		<p>
-			{storyData.score} points by {storyData.by}
+			{storyData.score} points by
+			<a href={`https://news.ycombinator.com/user?id=${storyData.by}`}>{storyData.by}</a>
 			{formatDate(storyData.time)} | {storyData.descendants} comments
 		</p>
 	</div>
@@ -55,6 +56,10 @@
 		.comments {
 			width: 100%;
 		}
+	}
+
+	h2 a {
+		color: var(--aurora-2);
 	}
 
 	.story-header {

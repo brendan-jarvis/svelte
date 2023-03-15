@@ -5,14 +5,13 @@ export const prerender = true;
 
 // TODO: Learn how to handle Supabase session in SvelteKit
 export const load = (async ({ fetch }) => {
-	const fetchBlogPosts = async () => {
+	const fetchBlogPosts = async (table: string) => {
 		try {
 			const { data, error } = await supabase
-				.from('posts')
+				.from(table)
 				.select('*')
-				.limit(10)
 				.order('created_at', { ascending: false })
-				.then(({ data, error }) => ({ data, error }));
+				.limit(10);
 
 			if (error) {
 				throw error;
@@ -25,7 +24,8 @@ export const load = (async ({ fetch }) => {
 	};
 
 	return {
-		blogPosts: fetchBlogPosts(),
+		blogPosts: fetchBlogPosts('posts'),
+		projects: fetchBlogPosts('projects'),
 		session: null
 	};
 }) satisfies PageServerLoad;

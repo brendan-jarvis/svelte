@@ -72,7 +72,13 @@
 	{/if}
 </main>
 
-<footer>Made by Brendan Jarvis while learning Svelte in 2023</footer>
+<footer>
+	<p>Made by Brendan Jarvis while learning Svelte in 2023.</p>
+	<p>
+		You can contact me on{' '}
+		<a href="https://twitter.com/brendanjjarvis">Twitter</a>.
+	</p>
+</footer>
 
 <style>
 	nav {

@@ -15,11 +15,6 @@
 	<h1>Welcome</h1>
 	<img src="profile.jpg" alt="Brendan Jarvis at graduation" height={144} width={144} />
 	<p>Welcome, my name is Brendan Jarvis. I am using this website to learn Svelte!</p>
-	<h2>Contact</h2>
-	<p>
-		You can contact me on{' '}
-		<a href="https://twitter.com/brendanjjarvis">Twitter</a>.
-	</p>
 
 	<h2>Blog</h2>
 	{#if !blogPosts}

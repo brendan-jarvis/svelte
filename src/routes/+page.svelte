@@ -15,17 +15,7 @@
 	<h1>Welcome</h1>
 	<img src="profile.jpg" alt="Brendan Jarvis at graduation" height={144} width={144} />
 	<p>Welcome, my name is Brendan Jarvis. I am using this website to learn Svelte!</p>
-	<h2>Projects</h2>
-	<p>
-		On this website I have built a <a href="/hackernews">HackerNews news reader</a> using the HackerNews
-		API. Consuming this external API is hampered by a N+1 query problem, so it takes a while to load.
-	</p>
-	<p>
-		I have a more information on my projects and a blog currently running using Next.js over at: <a
-			href="https://nextjs-brendan-jarvis.vercel.app">nextjs-brendan-jarvis.vercel.app</a
-		>
-	</p>
-	<h3>Contact</h3>
+	<h2>Contact</h2>
 	<p>
 		You can contact me on{' '}
 		<a href="https://twitter.com/brendanjjarvis">Twitter</a>.

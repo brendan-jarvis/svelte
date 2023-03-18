@@ -1,4 +1,4 @@
-name: CI
+name: Integration
 
 on:
   pull_request:
@@ -8,6 +8,9 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      PUBLIC_SUPABASE_URL: ${{ secrets.PUBLIC_SUPABASE_URL }}
+      PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.PUBLIC_SUPABASE_ANON_KEY }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -17,11 +20,6 @@ jobs:
         run: npm i
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Build
-        env:
-          PUBLIC_SUPABASE_URL: ${{ secrets.PUBLIC_SUPABASE_URL }}
-          PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.PUBLIC_SUPABASE_ANON_KEY }}
-        run: npm run build
       - name: Run Playwright tests
         run: npm run test
       - uses: actions/upload-artifact@v3

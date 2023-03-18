@@ -50,7 +50,7 @@
 	{:else}
 		{#each projects as project (project.id)}
 			<div>
-				<a href={project.url} class="blog-link">
+				<a href={project.url} class="blog-link" target="_blank" rel="noreferrer">
 					<h3>{project.title}</h3>
 				</a>
 				{#if project.created_at}

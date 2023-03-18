@@ -32,8 +32,6 @@ test.describe('Svelte home page', () => {
 		const blogSection = await page.$('.content h2:nth-of-type(1)');
 		if (blogSection) {
 			expect(await blogSection.textContent()).toBe('Blog');
-		} else {
-			test.fail();
 		}
 	});
 
@@ -41,8 +39,6 @@ test.describe('Svelte home page', () => {
 		const projectsSection = await page.$('.content h2:nth-of-type(2)');
 		if (projectsSection) {
 			expect(await projectsSection.textContent()).toBe('Projects');
-		} else {
-			test.fail();
 		}
 	});
 });

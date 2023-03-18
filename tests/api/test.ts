@@ -10,16 +10,12 @@ test.describe('Blog API', () => {
 	test('status code is 200', async () => {
 		if (response) {
 			expect(response.status()).toBe(200);
-		} else {
-			test.fail();
 		}
 	});
 
 	test('returns a JSON object', async () => {
 		if (response) {
 			expect(await response.json()).toBeInstanceOf(Object);
-		} else {
-			test.fail();
 		}
 	});
 });

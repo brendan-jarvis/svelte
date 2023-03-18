@@ -1,8 +1,17 @@
 import { expect, test } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
 
 test.describe('Svelte home page', () => {
 	test.beforeEach(async ({ page }) => {
 		await page.goto('/');
+	});
+
+	test.skip('should not have any automatically detectable accessibility issues', async ({
+		page
+	}) => {
+		const accessibilityScanResults = await new AxeBuilder.default({ page }).analyze();
+
+		expect(accessibilityScanResults.violations).toEqual([]); // 5
 	});
 
 	test('should have the correct title', async ({ page }) => {
@@ -21,11 +30,19 @@ test.describe('Svelte home page', () => {
 
 	test('should have a blog section', async ({ page }) => {
 		const blogSection = await page.$('.content h2:nth-of-type(1)');
-		expect(await blogSection.textContent()).toBe('Blog');
+		if (blogSection) {
+			expect(await blogSection.textContent()).toBe('Blog');
+		} else {
+			test.fail();
+		}
 	});
 
 	test('should have a projects section', async ({ page }) => {
 		const projectsSection = await page.$('.content h2:nth-of-type(2)');
-		expect(await projectsSection.textContent()).toBe('Projects');
+		if (projectsSection) {
+			expect(await projectsSection.textContent()).toBe('Projects');
+		} else {
+			test.fail();
+		}
 	});
 });

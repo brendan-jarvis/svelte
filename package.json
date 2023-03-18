@@ -16,6 +16,7 @@
     "format": "prettier --plugin-search-dir . --write ."
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.6.0",
     "@playwright/test": "^1.28.1",
     "@sveltejs/adapter-vercel": "^2.0.1",
     "@sveltejs/kit": "^1.5.0",

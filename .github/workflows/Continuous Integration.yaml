@@ -17,6 +17,8 @@ jobs:
         run: npm i
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Build
+        run: npm run build
       - name: Run Playwright tests
         env:
           PUBLIC_SUPABASE_URL: ${{ secrets.PUBLIC_SUPABASE_URL }}

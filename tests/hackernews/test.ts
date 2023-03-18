@@ -11,7 +11,7 @@ test.describe('Hackernews page', () => {
 	}) => {
 		const accessibilityScanResults = await new AxeBuilder.default({ page }).analyze();
 
-		expect(accessibilityScanResults.violations).toEqual([]); // 5
+		expect(accessibilityScanResults.violations).toEqual([]);
 	});
 
 	test('should have the correct title', async ({ page }) => {

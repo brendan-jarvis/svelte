@@ -1,6 +1,6 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Response } from '@playwright/test';
 
-let response;
+let response: Response | null;
 
 test.describe('Blog API', () => {
 	test.beforeEach(async ({ page }) => {
@@ -8,10 +8,18 @@ test.describe('Blog API', () => {
 	});
 
 	test('status code is 200', async () => {
-		expect(response.status()).toBe(200);
+		if (response) {
+			expect(response.status()).toBe(200);
+		} else {
+			test.fail();
+		}
 	});
 
 	test('returns a JSON object', async () => {
-		expect(await response.json()).toBeInstanceOf(Object);
+		if (response) {
+			expect(await response.json()).toBeInstanceOf(Object);
+		} else {
+			test.fail();
+		}
 	});
 });

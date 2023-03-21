@@ -29,8 +29,28 @@ test.describe('Hackernews story component', () => {
 		expect(storyTitle).toBeTruthy();
 	});
 
-	test('should display a story url', async ({ page }) => {
-		const storyUrl = await page.$eval('.story-url a', (el) => el.textContent);
-		expect(storyUrl).toBeTruthy();
+	test('should display a story type', async ({ page }) => {
+		const storyType = await page.$eval('.story-type', (el) => el.textContent);
+		expect(storyType).toBeTruthy();
+	});
+
+	test('should display a story info', async ({ page }) => {
+		const storyScore = await page.$eval('.post-info', (el) => el.textContent);
+		expect(storyScore).toContain('points');
+	});
+
+	test('should display a story comments', async ({ page }) => {
+		const storyComments = await page.$eval('.post-info', (el) => el.textContent);
+		expect(storyComments).toContain('comments');
+	});
+
+	test('should display a story author', async ({ page }) => {
+		const storyAuthor = await page.$eval('.post-info', (el) => el.textContent);
+		expect(storyAuthor).toContain('by');
+	});
+
+	test('should display a story time', async ({ page }) => {
+		const storyTime = await page.$eval('.post-info', (el) => el.textContent);
+		expect(storyTime).toContain('ago');
 	});
 });

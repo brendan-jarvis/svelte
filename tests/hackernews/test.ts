@@ -49,6 +49,25 @@ test.describe('Hackernews page', () => {
 		expect(await options[1].textContent()).toBe('Best Stories');
 		expect(await options[2].textContent()).toBe('New Stories');
 	});
+
+	test('Clicking sort by points button should sort posts in descending order', async ({ page }) => {
+		// Click the "sort by points" button
+		await page.click('button:has-text("Points")');
+
+		// Get all .post elements
+		const posts = await page.$$('.post');
+
+		// Get the scores from each post info element
+		const scores = [];
+		for (const post of posts) {
+			const scoreText = await post.innerText('.post-info');
+			const score = parseInt(scoreText.split('•')[1].trim());
+			scores.push(score);
+		}
+
+		// Check if scores are sorted in descending order
+		expect(scores).toEqual(scores.sort((a, b) => b - a));
+	});
 });
 
 test.describe('Hackernews story component', () => {

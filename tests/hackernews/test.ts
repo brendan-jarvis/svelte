@@ -18,3 +18,19 @@ test.describe('Hackernews page', () => {
 		expect(await page.title()).toBe('Hackernews Viewer - by Brendan Jarvis');
 	});
 });
+
+test.describe('Hackernews story component', () => {
+	test.beforeEach(async ({ page }) => {
+		await page.goto('/hackernews');
+	});
+
+	test('should display a post title', async ({ page }) => {
+		const storyTitle = await page.$eval('.post-title', (el) => el.textContent);
+		expect(storyTitle).toBeTruthy();
+	});
+
+	test('should display a story url', async ({ page }) => {
+		const storyUrl = await page.$eval('.story-url a', (el) => el.textContent);
+		expect(storyUrl).toBeTruthy();
+	});
+});

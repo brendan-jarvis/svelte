@@ -14,7 +14,7 @@ test.describe('Hackernews page reverse sorting', () => {
 
 		const scores = [];
 		for (const post of posts) {
-			const scoreText = await post.innerText('.post-info');
+			const scoreText = await post.innerText();
 			const score = parseInt(scoreText.split('•')[1].trim());
 			scores.push(score);
 		}
@@ -31,7 +31,7 @@ test.describe('Hackernews page reverse sorting', () => {
 
 		const commentCounts = [];
 		for (const post of posts) {
-			const commentText = await post.innerText('.post-info');
+			const commentText = await post.innerText();
 			const commentCount = parseInt(commentText.split('•')[2].trim().split(' ')[0]);
 			commentCounts.push(commentCount);
 		}
@@ -48,11 +48,11 @@ test.describe('Hackernews page reverse sorting', () => {
 
 		const dates = [];
 		for (const post of posts) {
-			const dateText = await post.innerText('.post-info');
+			const dateText = await post.innerText();
 			const date = new Date(dateText.split('•')[3].trim());
 			dates.push(date);
 		}
 
-		expect(dates).toEqual(dates.sort((a, b) => a - b));
+		expect(dates).toEqual(dates.sort((a, b) => a.getTime() - b.getTime()));
 	});
 });

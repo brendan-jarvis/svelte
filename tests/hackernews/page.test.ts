@@ -32,21 +32,21 @@ test.describe('Hackernews page', () => {
 		page
 	}) => {
 		const label = await page.$('label:has-text("sort by: ")');
-		const buttons = await label.$$('button');
-		expect(buttons.length).toBe(3);
-		expect(await buttons[0].textContent()).toBe('Points');
-		expect(await buttons[1].textContent()).toBe('Comments');
-		expect(await buttons[2].textContent()).toBe('Date posted');
+		const buttons = await label?.$$('button');
+		expect(buttons?.length).toBe(3);
+		expect(await buttons?.[0].textContent()).toBe('Points');
+		expect(await buttons?.[1].textContent()).toBe('Comments');
+		expect(await buttons?.[2].textContent()).toBe('Date posted');
 	});
 
 	test('view by should have three options: "Top Stories", "Best Stories", and "New Stories"', async ({
 		page
 	}) => {
 		const label = await page.$('label:has-text("view by: ")');
-		const options = await label.$$('option');
-		expect(options.length).toBe(3);
-		expect(await options[0].textContent()).toBe('Top Stories');
-		expect(await options[1].textContent()).toBe('Best Stories');
-		expect(await options[2].textContent()).toBe('New Stories');
+		const options = await label?.$$('option');
+		expect(options?.length).toBe(3);
+		expect(await options?.[0].textContent()).toBe('Top Stories');
+		expect(await options?.[1].textContent()).toBe('Best Stories');
+		expect(await options?.[2].textContent()).toBe('New Stories');
 	});
 });

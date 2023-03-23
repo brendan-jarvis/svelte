@@ -1,19 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { error } from '@sveltejs/kit';
-	import { formatDate } from '$lib/utils';
-
-	export let story: number;
-
-	let storyData: Story;
-
-	const loadStoryData = async (storyId: number): Promise<void> => {
-		const storyRes = await fetch(`https://hacker-news.firebaseio.com/v0/item/${storyId}.json`);
-		if (!storyRes.ok) {
-			throw error(storyRes.status, 'Something went wrong fetching a story from Hacker News');
-		}
-		storyData = await storyRes.json();
-	};
+	export let story: Story;
 
 	type Story = {
 		by: string;
@@ -27,47 +13,36 @@
 		url: string;
 	};
 
-	onMount(() => {
-		loadStoryData(story);
-	});
+	import { formatDate } from '$lib/utils';
 </script>
 
 <div class="post">
-	{#if storyData}
-		<div class="post-header">
-			<a href={storyData.url} class="post-title" target="_blank" rel="noreferrer"
-				>{storyData.title}</a
+	<div class="post-header">
+		<a href={story.url} class="post-title" target="_blank" rel="noreferrer">{story.title}</a>
+		{#if story.url}
+			<span class="story-url"
+				>(<a
+					href={`https://news.ycombinator.com/from?site=${
+						story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
+					}`}
+					target="_blank"
+					rel="noreferrer">{story.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
+				>)</span
 			>
-			{#if storyData.url}
-				<span class="story-url"
-					>(<a
-						href={`https://news.ycombinator.com/from?site=${
-							storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
-						}`}
-						target="_blank"
-						rel="noreferrer"
-						>{storyData.url?.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]}</a
-					>)</span
-				>
-			{/if}
-			<span class={`story-type ${storyData.type}`}>{storyData.type}</span>
-		</div>
-		<div class="post-info">
-			<a
-				href={`https://news.ycombinator.com/user?id=${storyData.by}`}
-				target="_blank"
-				rel="noreferrer"
-			>
-				by {storyData.by}</a
-			>
-			• {storyData.score}
-			points •
-			<a href={`/hackernews/${storyData.id}`} target="_blank" rel="noreferrer"
-				>{storyData.descendants || '0'} comments</a
-			>
-			• {formatDate(storyData.time)}
-		</div>
-	{/if}
+		{/if}
+		<span class={`story-type ${story.type}`}>{story.type}</span>
+	</div>
+	<div class="post-info">
+		<a href={`https://news.ycombinator.com/user?id=${story.by}`} target="_blank" rel="noreferrer">
+			by {story.by}</a
+		>
+		• {story.score}
+		points •
+		<a href={`/hackernews/${story.id}`} target="_blank" rel="noreferrer"
+			>{story.descendants || '0'} comments</a
+		>
+		• {formatDate(story.time)}
+	</div>
 </div>
 
 <style>

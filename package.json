@@ -19,7 +19,7 @@
     "@axe-core/playwright": "^4.6.0",
     "@playwright/test": "^1.28.1",
     "@sveltejs/adapter-vercel": "^2.0.1",
-    "@sveltejs/kit": "^1.15.1",
+    "@sveltejs/kit": "^1.15.2",
     "@tsconfig/svelte": "^4.0.1",
     "@types/marked": "^4.0.8",
     "@types/md5": "^2.3.2",

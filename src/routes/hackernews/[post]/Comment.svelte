@@ -35,6 +35,8 @@
 			display = 'block';
 		}
 	};
+
+	let showReplies = false;
 </script>
 
 {#if comment.by != undefined && !comment.dead}
@@ -61,8 +63,13 @@
 				{#if comment.text}
 					{@html comment.text}
 				{/if}
+				{#if comment.kids && !showReplies}
+					<button class="show-replies" on:click={() => (showReplies = true)}>Show replies</button>
+				{/if}
 			</div>
-			{#if comment.kids}
+
+			{#if comment.kids && showReplies}
+				<!-- show replies -->
 				<div class="comment-children">
 					{#each comment.kids as kid}
 						{#await fetchComment(kid)}
@@ -108,5 +115,26 @@
 		border-radius: 0.25rem;
 		padding: 0.25rem;
 		font-size: smaller;
+	}
+
+	.show-replies {
+		margin-top: 0.5rem;
+		display: block;
+		color: var(--aurora-3);
+		background-color: var(--polar-night-2);
+		border: 1px solid var(--aurora-3);
+		border-radius: 0px;
+		text-decoration: underline;
+		text-transform: none;
+	}
+
+	.show-replies:hover,
+	.show-replies:focus {
+		display: block;
+		color: var(--polar-night-2);
+		background-color: var(--aurora-3);
+		border: 1px solid var(--polar-night-2);
+		text-decoration: underline;
+		text-transform: none;
 	}
 </style>

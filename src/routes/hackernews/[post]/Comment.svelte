@@ -80,28 +80,25 @@
 {/if}
 
 <style>
-	.comment {
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-gap: 1rem;
-		padding: 0.5rem;
-	}
-
 	.comment-header {
 		color: var(--aurora-2);
 		font-size: small;
+		padding-left: 0.5rem;
 	}
 
 	.comment-children {
-		margin-left: 1rem;
-		padding-left: 0.5rem;
 		border-left: 1px solid var(--aurora-5);
 	}
 
 	.comment-text {
-		max-width: 700px;
 		background-color: var(--polar-night-2);
 		padding: 0.5rem;
+		overflow: auto;
+	}
+
+	.comment-text pre {
+		background-color: var(--polar-night-3);
+		color: var(--snow-storm-2);
 	}
 
 	button {

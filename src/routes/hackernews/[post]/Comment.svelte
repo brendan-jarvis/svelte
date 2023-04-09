@@ -64,7 +64,9 @@
 					{@html comment.text}
 				{/if}
 				{#if comment.kids && !showReplies}
-					<button class="show-replies" on:click={() => (showReplies = true)}>Show replies</button>
+					<button class="show-replies" on:click={() => (showReplies = true)}
+						>Show {comment.kids.length.toLocaleString()} replies</button
+					>
 				{/if}
 			</div>
 

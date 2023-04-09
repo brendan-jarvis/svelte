@@ -14,7 +14,7 @@
 	<meta name="description" content="Hackernews viewer built using Svelte by Brendan Jarvis" />
 </svelte:head>
 
-<div class="container" in:fade={{ delay: 250 }}>
+<div class="comments-container" in:fade={{ delay: 250 }}>
 	<div class="story-header">
 		<h2><a href={storyData.url}>{storyData.title}</a></h2>
 		{#if storyData.url}
@@ -47,24 +47,11 @@
 </div>
 
 <style>
-	@media (max-width: 950px) {
-		.comments {
-			width: 300px;
-		}
-	}
-	@media (min-width: 950px) {
-		.comments {
-			width: 100%;
-		}
-	}
-
 	h2 a {
 		color: var(--aurora-2);
 	}
 
 	.story-header {
-		display: flex;
-		justify-content: flex-start;
 		align-items: baseline;
 		gap: 0.5rem;
 	}
@@ -75,12 +62,5 @@
 
 	.story-info {
 		margin-bottom: 1rem;
-	}
-
-	.comments {
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-gap: 1rem;
-		padding: 0.5rem;
 	}
 </style>

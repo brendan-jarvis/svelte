@@ -37,18 +37,18 @@
 	];
 
 	let showSpinner = false;
-	let timer: NodeJS.Timeout;
+	// let timer: NodeJS.Timeout;
 
-	$: {
-		if ($navigating) {
-			timer = setTimeout(() => {
-				showSpinner = true;
-			}, 250);
-		} else {
-			clearTimeout(timer);
-			showSpinner = false;
-		}
-	}
+	// $: {
+	// 	if ($navigating) {
+	// 		timer = setTimeout(() => {
+	// 			showSpinner = true;
+	// 		}, 250);
+	// 	} else {
+	// 		clearTimeout(timer);
+	// 		showSpinner = false;
+	// 	}
+	// }
 </script>
 
 <nav>

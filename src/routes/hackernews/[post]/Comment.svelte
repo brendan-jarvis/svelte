@@ -125,7 +125,9 @@
 	}
 
 	.show-replies {
-		margin-top: 0.5rem;
+		margin-top: 0.25rem;
+		padding: 0.25rem;
+		font-size: smaller;
 		display: block;
 		color: var(--aurora-3);
 		background-color: var(--polar-night-2);

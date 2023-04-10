@@ -105,7 +105,6 @@
 		background-color: var(--polar-night-2);
 		padding: 5px;
 		overflow: auto;
-		font-family: Arial, Helvetica, sans-serif;
 		font-size: 14px;
 	}
 

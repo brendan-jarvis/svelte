@@ -65,7 +65,8 @@
 				{/if}
 				{#if comment.kids && !showReplies}
 					<button class="show-replies" on:click={() => (showReplies = true)} title="Show Replies"
-						>Show {comment.kids.length.toLocaleString()} replies</button
+						>Show {comment.kids.length.toLocaleString()}
+						{comment.kids.length > 1 ? 'replies' : 'reply'}</button
 					>
 				{/if}
 			</div>
@@ -110,6 +111,7 @@
 
 	.comment-text pre {
 		background-color: var(--polar-night-3);
+		font-family: 'Courier New', Courier, monospace;
 		color: var(--snow-storm-2);
 	}
 

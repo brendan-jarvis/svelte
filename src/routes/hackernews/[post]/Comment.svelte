@@ -1,4 +1,5 @@
 <script lang="ts">
+	import DOMPurify from 'isomorphic-dompurify';
 	export let comment: Comment;
 
 	type Comment = {
@@ -61,7 +62,7 @@
 		<div class="comment-body" style:display>
 			<div class="comment-text">
 				{#if comment.text}
-					{@html comment.text}
+					{@html DOMPurify.sanitize(comment.text)}
 				{/if}
 				{#if comment.kids && !showReplies}
 					<button class="show-replies" on:click={() => (showReplies = true)} title="Show Replies"

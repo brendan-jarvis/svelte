@@ -96,7 +96,8 @@
 	}
 
 	.comment-children {
-		border-left: 1px solid var(--aurora-5);
+		border-left: 1px solid var(--polar-night-4);
+		padding: 5px 0 0 5px;
 	}
 
 	.comment-text {

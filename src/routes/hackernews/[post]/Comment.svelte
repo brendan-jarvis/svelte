@@ -50,7 +50,7 @@
 				>{comment.by}
 			</a>
 			<span class="comment-time">{formatDate(comment.time)}</span>
-			<button on:click={toggleComment}>
+			<button class="toggle-comment-display" on:click={toggleComment}>
 				{#if display === 'block'}
 					[-]
 				{:else}
@@ -110,13 +110,18 @@
 		color: var(--snow-storm-2);
 	}
 
-	button {
+	.toggle-comment-display {
+		width: 20px;
+		height: 20px;
 		background-color: var(--aurora-3);
 		color: var(--polar-night-2);
+		text-align: center;
+		line-height: 7.5px;
 		border: none;
-		border-radius: 0.25rem;
-		padding: 0.25rem;
+		border-radius: 3px;
+		padding: 3px;
 		font-size: smaller;
+		vertical-align: middle;
 	}
 
 	.show-replies {

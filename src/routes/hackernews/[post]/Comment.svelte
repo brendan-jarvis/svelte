@@ -50,7 +50,7 @@
 				>{comment.by}
 			</a>
 			<span class="comment-time">{formatDate(comment.time)}</span>
-			<button class="toggle-comment-display" on:click={toggleComment}>
+			<button class="toggle-comment-display" on:click={toggleComment} title="Show/Hide Comment">
 				{#if display === 'block'}
 					[-]
 				{:else}
@@ -64,7 +64,7 @@
 					{@html comment.text}
 				{/if}
 				{#if comment.kids && !showReplies}
-					<button class="show-replies" on:click={() => (showReplies = true)}
+					<button class="show-replies" on:click={() => (showReplies = true)} title="Show Replies"
 						>Show {comment.kids.length.toLocaleString()} replies</button
 					>
 				{/if}

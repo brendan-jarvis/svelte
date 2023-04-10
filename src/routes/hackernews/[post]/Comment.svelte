@@ -137,11 +137,8 @@
 
 	.show-replies:hover,
 	.show-replies:focus {
-		display: block;
 		color: var(--polar-night-2);
 		background-color: var(--aurora-3);
 		border: 1px solid var(--polar-night-2);
-		text-decoration: underline;
-		text-transform: none;
 	}
 </style>

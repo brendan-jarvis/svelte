@@ -3,6 +3,7 @@
 	import { supabase } from '$lib/supabaseClient';
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import '@fontsource/roboto';
 
 	onMount(() => {
 		const {

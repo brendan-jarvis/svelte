@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.6.0",
+    "@fontsource/roboto": "^4.5.8",
     "@playwright/test": "^1.28.1",
     "@sveltejs/adapter-vercel": "^2.0.1",
     "@sveltejs/kit": "^1.15.2",

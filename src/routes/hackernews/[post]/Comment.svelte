@@ -109,12 +109,6 @@
 		font-size: 14px;
 	}
 
-	.comment-text pre {
-		background-color: var(--polar-night-3);
-		font-family: 'Courier New', Courier, monospace;
-		color: var(--snow-storm-2);
-	}
-
 	.toggle-comment-display {
 		width: 20px;
 		height: 20px;

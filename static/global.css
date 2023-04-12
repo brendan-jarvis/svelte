@@ -44,6 +44,15 @@ main {
   margin: 0 auto;
 }
 
+pre {
+  background-color: var(--polar-night-3);
+  color: var(--snow-storm-2);
+  white-space: pre-wrap;
+  padding: 1rem;
+  border-radius: 5px;
+  font-family: 'Roboto Mono', monospace;
+}
+
 /* Colored heading tags */
 h1 {
   color: var(--aurora-1);

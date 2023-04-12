@@ -110,9 +110,10 @@
 	}
 
 	.toggle-comment-display {
-		width: 20px;
+		width: 25px;
 		height: 20px;
 		background-color: var(--aurora-3);
+		font-family: 'Roboto Mono', monospace;
 		color: var(--polar-night-2);
 		text-align: center;
 		line-height: 7.5px;
@@ -127,6 +128,7 @@
 		margin-top: 0.25rem;
 		padding: 0.25rem;
 		font-size: smaller;
+		font-family: 'Roboto Mono', monospace;
 		display: block;
 		color: var(--aurora-3);
 		background-color: var(--polar-night-2);

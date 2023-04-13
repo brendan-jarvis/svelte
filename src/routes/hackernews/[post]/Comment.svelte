@@ -1,5 +1,7 @@
 <script lang="ts">
 	import DOMPurify from 'isomorphic-dompurify';
+	import { fly } from 'svelte/transition';
+	import { circInOut } from 'svelte/easing';
 	export let comment: Comment;
 
 	type Comment = {
@@ -41,7 +43,7 @@
 </script>
 
 {#if comment.by != undefined && !comment.dead}
-	<div class="comment">
+	<div class="comment" transition:fly={{ x: 10, y: 10, duration: 500, easing: circInOut }}>
 		<span class="comment-header">
 			<a
 				href={`https://news.ycombinator.com/user?id=${comment.by}`}
@@ -76,12 +78,17 @@
 				<!-- show replies -->
 				<div class="comment-children">
 					{#each comment.kids as kid}
-						{#await fetchComment(kid)}
-							<p>Loading comment...</p>
-						{:then comment}
+						{#await fetchComment(kid) then comment}
 							<svelte:self {comment} />
 						{:catch error}
-							<p style="color: red">{error.message}</p>
+							<div
+								class="comment-body"
+								transition:fly={{ x: 10, y: 10, duration: 500, easing: circInOut }}
+							>
+								<div class="comment-text">
+									<p style="color: red">{error.message}</p>
+								</div>
+							</div>
 						{/await}
 					{/each}
 				</div>

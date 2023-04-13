@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { fade } from 'svelte/transition';
 	import Comment from './Comment.svelte';
 
 	import { formatDate } from '$lib/utils';
@@ -14,7 +13,7 @@
 	<meta name="description" content="Hackernews viewer built using Svelte by Brendan Jarvis" />
 </svelte:head>
 
-<div class="comments-container" in:fade={{ delay: 250 }}>
+<div class="comments-container">
 	<div class="story-header">
 		<h2><a href={storyData.url}>{storyData.title}</a></h2>
 		{#if storyData.url}

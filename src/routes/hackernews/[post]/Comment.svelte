@@ -1,5 +1,7 @@
 <script lang="ts">
 	import DOMPurify from 'isomorphic-dompurify';
+	import { fly } from 'svelte/transition';
+	import { circInOut } from 'svelte/easing';
 	export let comment: Comment;
 
 	type Comment = {
@@ -41,7 +43,7 @@
 </script>
 
 {#if comment.by != undefined && !comment.dead}
-	<div class="comment">
+	<div class="comment" transition:fly={{ x: 10, y: 10, duration: 500, easing: circInOut }}>
 		<span class="comment-header">
 			<a
 				href={`https://news.ycombinator.com/user?id=${comment.by}`}
@@ -76,12 +78,17 @@
 				<!-- show replies -->
 				<div class="comment-children">
 					{#each comment.kids as kid}
-						{#await fetchComment(kid)}
-							<p>Loading comment...</p>
-						{:then comment}
+						{#await fetchComment(kid) then comment}
 							<svelte:self {comment} />
 						{:catch error}
-							<p style="color: red">{error.message}</p>
+							<div
+								class="comment-body"
+								transition:fly={{ x: 10, y: 10, duration: 500, easing: circInOut }}
+							>
+								<div class="comment-text">
+									<p style="color: red">{error.message}</p>
+								</div>
+							</div>
 						{/await}
 					{/each}
 				</div>
@@ -109,16 +116,11 @@
 		font-size: 14px;
 	}
 
-	.comment-text pre {
-		background-color: var(--polar-night-3);
-		font-family: 'Courier New', Courier, monospace;
-		color: var(--snow-storm-2);
-	}
-
 	.toggle-comment-display {
-		width: 20px;
+		width: 25px;
 		height: 20px;
 		background-color: var(--aurora-3);
+		font-family: 'Roboto Mono', monospace;
 		color: var(--polar-night-2);
 		text-align: center;
 		line-height: 7.5px;
@@ -133,6 +135,7 @@
 		margin-top: 0.25rem;
 		padding: 0.25rem;
 		font-size: smaller;
+		font-family: 'Roboto Mono', monospace;
 		display: block;
 		color: var(--aurora-3);
 		background-color: var(--polar-night-2);

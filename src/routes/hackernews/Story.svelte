@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
+	import { circInOut } from 'svelte/easing';
 	export let story: Story;
 
 	type Story = {
@@ -16,7 +18,7 @@
 	import { formatDate } from '$lib/utils';
 </script>
 
-<div class="post">
+<div class="post" transition:fly={{ x: 0, y: 50, duration: 500, easing: circInOut }}>
 	<div class="post-header">
 		<a href={story.url} class="post-title" target="_blank" rel="noreferrer">{story.title}</a>
 		{#if story.url}

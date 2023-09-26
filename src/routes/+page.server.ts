@@ -4,7 +4,7 @@ import { supabase } from '$lib/supabaseClient';
 export const prerender = true;
 
 // TODO: Learn how to handle Supabase session in SvelteKit
-export const load = (async ({ fetch }) => {
+export const load = (async () => {
 	const fetchBlogPosts = async (table: string) => {
 		try {
 			const { data, error } = await supabase

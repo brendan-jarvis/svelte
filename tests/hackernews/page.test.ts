@@ -9,7 +9,7 @@ test.describe('Hackernews page', () => {
 	test.skip('should not have any automatically detectable accessibility issues', async ({
 		page
 	}) => {
-		const accessibilityScanResults = await new AxeBuilder.default({ page }).analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

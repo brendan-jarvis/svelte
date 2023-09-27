@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-  import { error } from '@sveltejs/kit';
 	import type { AuthSession } from '@supabase/supabase-js';
 	import { supabase } from '$lib/supabaseClient';
 	import md5 from 'md5';
@@ -72,7 +71,7 @@
 </script>
 
 <img
-	src={avatarUrl ? avatarUrl : `https://www.gravatar.com/avatar/${md5(session.user.email)}`}
+	src={avatarUrl ? avatarUrl : `https://www.gravatar.com/avatar/${md5(String(session.user.email))}`}
 	alt={`${username} avatar`}
 />
 

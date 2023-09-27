@@ -2,16 +2,16 @@
 	import { supabase } from '$lib/supabaseClient';
 
 	interface BlogPost {
-		id: string | number;
 		author: string;
-		title: string;
-		content: string;
-		created_at: string | number;
-		updated_at: string | number;
+		content: string | null;
+		created_at: string | null;
+		id: number;
+		title: string | null;
+		updated_at: string | null;
 	}
 
 	let loadingBlogPosts = false;
-	let blogPosts: BlogPost[];
+	let blogPosts: BlogPost[] | null = null;
 
 	const fetchBlogPosts = async () => {
 		try {

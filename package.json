@@ -28,7 +28,7 @@
 		"eslint": "^8.50.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-svelte": "^2.33.2",
-		"isomorphic-dompurify": "^1.8.0",
+		"isomorphic-dompurify": "^1.9.0",
 		"marked": "^9.0.3",
 		"prettier": "^3.0.3",
 		"prettier-plugin-svelte": "^3.0.3",

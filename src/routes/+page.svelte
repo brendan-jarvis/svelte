@@ -1,9 +1,9 @@
+<!-- src/routes/profile/+page.svelte -->
 <script lang="ts">
-	import type { PageData } from './$types';
+	export let data;
 
-	export let data: PageData;
-
-	const { blogPosts, projects } = data;
+	let { blogPosts, projects } = data;
+	$: ({ blogPosts, projects } = data);
 </script>
 
 <svelte:head>
@@ -11,9 +11,15 @@
 	<meta name="description" content="A website built using Svelte by Brendan Jarvis" />
 </svelte:head>
 
-<div class="content">
-	<h1>Welcome</h1>
-	<img src="profile.jpg" alt="Brendan Jarvis at graduation" height={144} width={144} />
+<div class="flex flex-col text-center">
+	<h1 class="">Welcome</h1>
+	<img
+		class="rounded-tr-lg mx-auto"
+		src="profile.jpg"
+		alt="Brendan Jarvis - University graduation"
+		height={144}
+		width={144}
+	/>
 	<p>Welcome, my name is Brendan Jarvis. I am using this website to learn Svelte!</p>
 
 	<h2>Blog</h2>
@@ -67,20 +73,3 @@
 		{/each}
 	{/if}
 </div>
-
-<style>
-	.content {
-		max-width: 600px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		text-align: center;
-	}
-
-	img {
-		display: block;
-		margin: 0 auto;
-		border-radius: 50%;
-	}
-</style>

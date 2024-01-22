@@ -5,7 +5,30 @@
 	import { formatDate } from '$lib/utils';
 
 	export let data: PageData;
-	const { storyData, commentData } = data;
+	let { storyData, commentData } = data;
+
+	let sort = '';
+	const commentsSort = () => {
+		let sortedComments;
+		if (sort === 'comments' || sort === 'comments-reverse') {
+			sortedComments = [...commentData].reverse();
+			sort = sort === 'comments' ? 'comments-reverse' : 'comments';
+		} else {
+			sortedComments = [...commentData].sort((a, b) => b.kids - a.kids);
+			sort = 'comments';
+		}
+	};
+
+	const dateSort = () => {
+		let sortedComments;
+		if (sort === 'date' || sort === 'date-reverse') {
+			sortedComments = [...commentData].reverse();
+			sort = sort === 'date' ? 'date-reverse' : 'date';
+		} else {
+			sortedComments = [...commentData].sort((a, b) => b.time - a.time);
+			sort = 'date';
+		}
+	};
 </script>
 
 <svelte:head>
@@ -39,6 +62,15 @@
 
 	<div class="comments">
 		<h3>Comments</h3>
+		<label
+			>Sort by:
+			<button value="comments" on:click={commentsSort}
+				>Comments{#if sort === 'comments'}▼{/if}{#if sort === 'comments-reverse'}▲{/if}</button
+			>
+			<button value="date" on:click={dateSort}
+				>Date posted{#if sort === 'date'}▼{/if}{#if sort === 'date-reverse'}▲{/if}</button
+			>
+		</label>
 		{#each commentData as comment}
 			<Comment {comment} />
 		{/each}

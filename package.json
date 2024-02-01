@@ -42,7 +42,7 @@
 	"type": "module",
 	"dependencies": {
 		"@axe-core/playwright": "^4.8.2",
-		"@supabase/auth-helpers-sveltekit": "^0.10.3",
+		"@supabase/auth-helpers-sveltekit": "^0.12.0",
 		"@supabase/supabase-js": "^2.39.1",
 		"md5": "^2.3.0"
 	}

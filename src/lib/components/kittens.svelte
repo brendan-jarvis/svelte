@@ -1,9 +1,13 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
-	export let count: number = 3;
-	let kittenUrls: string[] = [];
+	import { run } from 'svelte/legacy';
 
-	$: getKittenUrls();
+	import { fly } from 'svelte/transition';
+	interface Props {
+		count?: number;
+	}
+
+	let { count = $bindable(3) }: Props = $props();
+	let kittenUrls: string[] = $state([]);
 
 	function getKittenUrls() {
 		kittenUrls = [];
@@ -11,12 +15,15 @@
 			kittenUrls.push(`http://placekitten.com/200/300?image=${i}`);
 		}
 	}
+	run(() => {
+		getKittenUrls();
+	});
 </script>
 
 <div class="control-panel">
 	<label>
 		{count} kittens:
-		<input type="range" bind:value={count} on:change={getKittenUrls} min="5" max="21" />
+		<input type="range" bind:value={count} onchange={getKittenUrls} min="5" max="21" />
 	</label>
 </div>
 

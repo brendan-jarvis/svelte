@@ -1,13 +1,22 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { fade } from 'svelte/transition';
+	import { untrack } from 'svelte';
 	import Story from './Story.svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	let { topStories, bestStories, newStories } = data;
+	let { data }: Props = $props();
 
-	$: stories = [
+	// Local copies so sorting does not rewrite the load result. untrack keeps the
+	// initial value without tying these assignments back to later data updates.
+	let topStories = $state(untrack(() => data.topStories));
+	let bestStories = $state(untrack(() => data.bestStories));
+	let newStories = $state(untrack(() => data.newStories));
+
+	let stories = $derived([
 		{
 			title: 'Top Stories',
 			data: topStories
@@ -20,47 +29,49 @@
 			title: 'New Stories',
 			data: newStories
 		}
-	];
-	let sort: string;
-	let selectedView = 'top-stories';
+	]);
+	let sort = $state<string | undefined>();
+	let selectedView = $state('top-stories');
 
+	// Copy before sorting. Svelte 5 ignores an assignment of the same array, and these
+	// helpers mutate in place.
 	const pointsSort = () => {
 		if (sort === 'points' || sort === 'points-reverse') {
-			topStories = topStories.reverse();
-			bestStories = bestStories.reverse();
-			newStories = newStories.reverse();
+			topStories = [...topStories].reverse();
+			bestStories = [...bestStories].reverse();
+			newStories = [...newStories].reverse();
 			sort = sort === 'points' ? 'points-reverse' : 'points';
 			return;
 		}
-		topStories = topStories.sort((a, b) => b.score - a.score);
-		bestStories = bestStories.sort((a, b) => b.score - a.score);
-		newStories = newStories.sort((a, b) => b.score - a.score);
+		topStories = [...topStories].sort((a, b) => b.score - a.score);
+		bestStories = [...bestStories].sort((a, b) => b.score - a.score);
+		newStories = [...newStories].sort((a, b) => b.score - a.score);
 		sort = 'points';
 	};
 	const commentsSort = () => {
 		if (sort === 'comments' || sort === 'comments-reverse') {
-			topStories = topStories.reverse();
-			bestStories = bestStories.reverse();
-			newStories = newStories.reverse();
+			topStories = [...topStories].reverse();
+			bestStories = [...bestStories].reverse();
+			newStories = [...newStories].reverse();
 			sort = sort === 'comments' ? 'comments-reverse' : 'comments';
 			return;
 		}
-		topStories = topStories.sort((a, b) => b.descendants - a.descendants);
-		bestStories = bestStories.sort((a, b) => b.descendants - a.descendants);
-		newStories = newStories.sort((a, b) => b.descendants - a.descendants);
+		topStories = [...topStories].sort((a, b) => b.descendants - a.descendants);
+		bestStories = [...bestStories].sort((a, b) => b.descendants - a.descendants);
+		newStories = [...newStories].sort((a, b) => b.descendants - a.descendants);
 		sort = 'comments';
 	};
 	const dateSort = () => {
 		if (sort === 'date' || sort === 'date-reverse') {
-			topStories = topStories.reverse();
-			bestStories = bestStories.reverse();
-			newStories = newStories.reverse();
+			topStories = [...topStories].reverse();
+			bestStories = [...bestStories].reverse();
+			newStories = [...newStories].reverse();
 			sort = sort === 'date' ? 'date-reverse' : 'date';
 			return;
 		}
-		topStories = topStories.sort((a, b) => b.time - a.time);
-		bestStories = bestStories.sort((a, b) => b.time - a.time);
-		newStories = newStories.sort((a, b) => b.time - a.time);
+		topStories = [...topStories].sort((a, b) => b.time - a.time);
+		bestStories = [...bestStories].sort((a, b) => b.time - a.time);
+		newStories = [...newStories].sort((a, b) => b.time - a.time);
 		sort = 'date';
 	};
 </script>
@@ -68,13 +79,13 @@
 <h1>Hackernews</h1>
 <label
 	>Sort by:
-	<button value="points" on:click={pointsSort}
+	<button value="points" onclick={pointsSort}
 		>Points{#if sort === 'points'}▼{/if}{#if sort === 'points-reverse'}▲{/if}</button
 	>
-	<button value="comments" on:click={commentsSort}
+	<button value="comments" onclick={commentsSort}
 		>Comments{#if sort === 'comments'}▼{/if}{#if sort === 'comments-reverse'}▲{/if}</button
 	>
-	<button value="date" on:click={dateSort}
+	<button value="date" onclick={dateSort}
 		>Date posted{#if sort === 'date'}▼{/if}{#if sort === 'date-reverse'}▲{/if}</button
 	>
 </label>

@@ -2,10 +2,15 @@
 	import type { PageData } from './$types';
 	import Comment from './Comment.svelte';
 
-	import { formatDate } from '$lib/utils';
+	import { formatDate } from '#lib/utils.js';
 
-	export let data: PageData;
-	const { storyData, commentData } = data;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
+	const storyData = $derived(data.storyData);
+	const commentData = $derived(data.commentData);
 </script>
 
 <svelte:head>

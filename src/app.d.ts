@@ -1,16 +1,12 @@
-// See https://kit.svelte.dev/docs/types#app
+// See https://svelte.dev/docs/kit/types#app
 // for information about these interfaces
-import { SupabaseClient, Session } from '@supabase/supabase-js';
-import { Database } from './DatabaseDefinitions';
+import type { Session, SupabaseClient } from '@supabase/supabase-js';
+import type { Database } from './lib/supabaseClient.types';
+
+declare module '*.css';
 
 declare global {
-	declare namespace App {
-		interface Supabase {
-			// Use the path to where you generated the types using the Supbase CLI.
-			Database: import('../types/supabase').Database;
-			SchemaName: 'public';
-		}
-
+	namespace App {
 		interface Locals {
 			supabase: SupabaseClient<Database>;
 			getSession(): Promise<Session | null>;

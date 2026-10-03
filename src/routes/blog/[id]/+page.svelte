@@ -2,11 +2,17 @@
 	import { marked } from 'marked';
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	const { blogPost } = data;
+	let { data }: Props = $props();
 
-	$: console.log(data);
+	const blogPost = $derived(data.blogPost);
+
+	$effect(() => {
+		console.log(data);
+	});
 </script>
 
 <div class="content">

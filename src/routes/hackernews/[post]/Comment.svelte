@@ -1,10 +1,10 @@
 <script lang="ts">
+	import Comment from './Comment.svelte';
 	import DOMPurify from 'isomorphic-dompurify';
 	import { fly } from 'svelte/transition';
 	import { circInOut } from 'svelte/easing';
-	export let comment: Comment;
 
-	type Comment = {
+	type HnComment = {
 		by: string;
 		id: number;
 		kids: number[];
@@ -15,13 +15,18 @@
 		dead?: boolean;
 	};
 
-	import { formatDate } from '$lib/utils';
+	import { formatDate } from '#lib/utils.js';
+	interface Props {
+		comment: HnComment;
+	}
 
-	let display = 'block';
+	let { comment }: Props = $props();
+
+	let display = $state('block');
 
 	const fetchComment = async (id: number) => {
 		const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
-		const data: Comment = await response.json();
+		const data: HnComment = await response.json();
 
 		if (!response.ok) {
 			throw new Error(`Something went wrong fetching comment: ${id}`);
@@ -39,7 +44,7 @@
 		}
 	};
 
-	let showReplies = false;
+	let showReplies = $state(false);
 </script>
 
 {#if comment.by != undefined && !comment.dead}
@@ -53,7 +58,7 @@
 				>{comment.by}
 			</a>
 			<span class="comment-time">{formatDate(comment.time)}</span>
-			<button class="toggle-comment-display" on:click={toggleComment} title="Show/Hide Comment">
+			<button class="toggle-comment-display" onclick={toggleComment} title="Show/Hide Comment">
 				{#if display === 'block'}
 					[-]
 				{:else}
@@ -67,7 +72,7 @@
 					{@html DOMPurify.sanitize(comment.text)}
 				{/if}
 				{#if comment.kids && !showReplies}
-					<button class="show-replies" on:click={() => (showReplies = true)} title="Show Replies"
+					<button class="show-replies" onclick={() => (showReplies = true)} title="Show Replies"
 						>Show {comment.kids.length.toLocaleString()}
 						{comment.kids.length > 1 ? 'replies' : 'reply'}</button
 					>
@@ -79,7 +84,7 @@
 				<div class="comment-children">
 					{#each comment.kids as kid}
 						{#await fetchComment(kid) then comment}
-							<svelte:self {comment} />
+							<Comment {comment} />
 						{:catch error}
 							<div
 								class="comment-body"

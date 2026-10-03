@@ -1,9 +1,14 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { supabase } from '$lib/supabaseClient';
+	import { page } from '$app/state';
+	import { supabase } from '#lib/supabaseClient.js';
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import '@fontsource/roboto';
+	import '@fontsource/roboto/index.css';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	onMount(() => {
 		const {
@@ -59,7 +64,7 @@
 			target={route.target || null}
 			rel={route.rel || null}
 			data-sveltekit-preload-data={route.preload}
-			class:active={$page.url.pathname === route.href}>{route.text}</a
+			class:active={page.url.pathname === route.href}>{route.text}</a
 		>
 	{/each}
 </nav>
@@ -69,18 +74,18 @@
 		<div class="lds-ring-parent">
 			<h1>Loading ...</h1>
 			<div class="lds-ring">
-				<div />
-				<div />
-				<div />
-				<div />
-				<div />
-				<div />
-				<div />
-				<div />
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
 			</div>
 		</div>
 	{:else}
-		<slot />
+		{@render children?.()}
 	{/if}
 </main>
 

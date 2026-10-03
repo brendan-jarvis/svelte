@@ -1,9 +1,14 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	const { blogPosts, projects } = data;
+	let { data }: Props = $props();
+
+	const blogPosts = $derived(data.blogPosts);
+	const projects = $derived(data.projects);
 </script>
 
 <svelte:head>

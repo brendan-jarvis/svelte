@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { supabase } from '$lib/supabaseClient';
+import { supabase } from '#lib/supabaseClient.js';
 
 export const prerender = true;
 
@@ -23,9 +23,14 @@ export const load = (async () => {
 		}
 	};
 
+	const [blogPosts, projects] = await Promise.all([
+		fetchBlogPosts('posts'),
+		fetchBlogPosts('projects')
+	]);
+
 	return {
-		blogPosts: fetchBlogPosts('posts'),
-		projects: fetchBlogPosts('projects'),
+		blogPosts,
+		projects,
 		session: null
 	};
 }) satisfies PageServerLoad;

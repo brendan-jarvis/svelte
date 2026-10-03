@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { typewriter } from '$lib/utils';
+	import { typewriter } from '#lib/utils.js';
 
-	let count = 0;
-	let clicked = false;
-	$: doubled = count * 2;
+	let count = $state(0);
+	let clicked = $state(false);
+	let doubled = $derived(count * 2);
 
 	function calculatePoints(count: number) {
 		let points = 2 * count;
@@ -55,11 +55,11 @@
 	{/each}
 </ul>
 
-<button on:click={() => (count += 1)}>Clicked {count} {count === 1 ? 'time' : 'times'}</button>
+<button onclick={() => (count += 1)}>Clicked {count} {count === 1 ? 'time' : 'times'}</button>
 {#if !clicked}
-	<button on:click={() => (clicked = true)}>Click me!</button>
+	<button onclick={() => (clicked = true)}>Click me!</button>
 {:else}
-	<button on:click={() => (clicked = false)}>Unclick me!</button>
+	<button onclick={() => (clicked = false)}>Unclick me!</button>
 {/if}
 
 {#if clicked}

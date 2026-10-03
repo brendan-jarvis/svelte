@@ -20,7 +20,7 @@ export const load = (async ({ fetch, params }) => {
 	};
 
 	return {
-		blogPost: fetchBlogPost(),
+		blogPost: await fetchBlogPost(),
 		session: null
 	};
 }) satisfies PageServerLoad;

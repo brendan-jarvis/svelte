@@ -1,15 +1,19 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { AuthSession } from '@supabase/supabase-js';
-	import { supabase } from '$lib/supabaseClient';
+	import { supabase } from '#lib/supabaseClient.js';
 	import md5 from 'md5';
 
-	export let session: AuthSession;
+	interface Props {
+		session: AuthSession;
+	}
 
-	let loading = false;
-	let username: string | null = null;
-	let website: string | null = null;
-	let avatarUrl: string | null = null;
+	let { session = $bindable() }: Props = $props();
+
+	let loading = $state(false);
+	let username: string | null = $state(null);
+	let website: string | null = $state(null);
+	let avatarUrl: string | null = $state(null);
 
 	onMount(() => {
 		getProfile();
@@ -75,7 +79,13 @@
 	alt={`${username} avatar`}
 />
 
-<form on:submit|preventDefault={updateProfile} class="form-widget">
+<form
+	onsubmit={(event) => {
+		event.preventDefault();
+		updateProfile();
+	}}
+	class="form-widget"
+>
 	<label for="email">Email</label>
 	<input id="email" type="text" bind:value={session.user.email} disabled />
 
@@ -89,7 +99,7 @@
 		{loading ? 'Saving ...' : 'Update profile'}
 	</button>
 
-	<button type="button" class="secondary block" on:click={() => supabase.auth.signOut()}>
+	<button type="button" class="secondary block" onclick={() => supabase.auth.signOut()}>
 		Sign Out
 	</button>
 </form>

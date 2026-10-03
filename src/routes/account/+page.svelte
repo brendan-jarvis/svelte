@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { supabase } from '$lib/supabaseClient';
+	import { supabase } from '#lib/supabaseClient.js';
 	import type { AuthSession } from '@supabase/supabase-js';
-	import Account from '$lib/components/Account.svelte';
-	import Auth from '$lib/components/Auth.svelte';
+	import Account from '#lib/components/Account.svelte';
+	import Auth from '#lib/components/Auth.svelte';
 
-	let session: AuthSession | null;
+	let session = $state<AuthSession | null>(null);
 
 	onMount(() => {
 		supabase.auth.getSession().then(({ data }) => {

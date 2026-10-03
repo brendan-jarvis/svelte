@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { supabase } from '$lib/supabaseClient';
+	import { supabase } from '#lib/supabaseClient.js';
 
 	interface BlogPost {
 		author: string;
@@ -10,8 +10,8 @@
 		updated_at: string | null;
 	}
 
-	let loadingBlogPosts = false;
-	let blogPosts: BlogPost[] | null = null;
+	let loadingBlogPosts = $state(false);
+	let blogPosts: BlogPost[] | null = $state(null);
 
 	const fetchBlogPosts = async () => {
 		try {

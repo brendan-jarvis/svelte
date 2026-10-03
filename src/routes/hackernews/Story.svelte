@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { circInOut } from 'svelte/easing';
-	export let story: Story;
 
 	type Story = {
 		by: string;
@@ -15,7 +14,12 @@
 		url: string;
 	};
 
-	import { formatDate } from '$lib/utils';
+	import { formatDate } from '#lib/utils.js';
+	interface Props {
+		story: Story;
+	}
+
+	let { story }: Props = $props();
 </script>
 
 <div class="post" transition:fly={{ x: 0, y: 50, duration: 500, easing: circInOut }}>
